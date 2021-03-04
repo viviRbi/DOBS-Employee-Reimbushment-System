@@ -22,9 +22,10 @@
 .margin-bottom-sm{
     margin-bottom: 30px;
 }
-.info-link{
-    
-}
+.margin-content-start{
+    margin-top: 100px;
+}  
+
 /* .vertical-line{
     width:5px;
     margin-top: 5px;
