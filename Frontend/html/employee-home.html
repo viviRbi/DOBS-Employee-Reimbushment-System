@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href= "../css/repeated.css">
+    <link rel="stylesheet" type="text/css" href= "../css/employee-manager-shared.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <title>DOBS - ERS - Employee - Home</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark text-secondary shadow-sm nav-header">
+        <!-- --------------------------------------------------------------------Navbar-------------------------------------------------------------------- -->
+  
+            <aside class="col-xs-6 text-left">
+                <a rel="home" href="/">
+                    <img src="../img/logo.png" class="logo-md">
+                    <img src="../img/logo_text.png" class="logo-md nav-logo-text">
+                </a>
+            </aside>
+
+            <aside class="col--xs-6 text-right avatar-holder">
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle avatar-btn text-left" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <p class="avatar-hi-text" id="sayHi">Hi Vy</p>
+                        <div class="avatar-img text-right"></div> 
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right avatar-wrapper-width text-center">
+                        <!-- Need onclick event, no need for href -->
+                      <button class="dropdown-item" type="button" id="employeeProfileBtn">Profile</button>
+                      <button class="dropdown-item" type="button" id="employeeEditProfileBtn">Edit</button>
+                      <button class="dropdown-item" type="button" id="logOutBtn">Logout</button>
+                    </div>
+                  </div>     
+            </aside>
+      </nav>
+
+      <!-- --------------------------------------------------------------------Menu button-------------------------------------------------------------------- -->
+      <main class="margin-content-start container-lg">
+        <a href="submitReimbushmentRequest.html" class="text-light"><button class="btn bg-darkblue text-light shadow form-control user-option-btn">Submit a Reimbushment Request</button></a>
+        <button class="btn bg-darkblue text-light shadow form-control user-option-btn">View Pending Requests</button>
+        <button class="btn bg-darkblue text-light shadow form-control user-option-btn">View Ressolved Requests</button>
+      </main>
+
+      <!-- --------------------------------------------------------------------Footer-------------------------------------------------------------------- -->
+    <footer class="footer bg-darkblue">
+        <div class="container">
+            <div class="row">
+            
+                <section class="col-xs-12 col-sm-6 col-md-5">
+                    <div class="widget subscribe no-box">
+                        <h5 class="widget-title">
+                            <img src="../img/logo_light.png" class="logo-md">
+                            <img src="../img/logo_text_light.png" class="logo-md nav-logo-text">
+                        </h5>
+                        <p>#1 in Customer Satisfaction</p>
+                        <p>With Direct Retail Banking – Digital Ocean Banking System</p>
+                </section>
+                
+                <section class="col-xs-12 col-sm-6 col-md-3">
+                    <h5 class="widget-title">Quick Links<span></span></h5>
+                    <ul class="thumbnail-widget">
+                        <li>
+                            <div class="thumb-content"><a href="manager-FAQ.html" target="_blank" class="info-link text-light">What's in Manager Page</a></div>	
+                        </li>
+                        <li>
+                            <div class="thumb-content"><a href="employee-FAQ.html" target="_blank" class="info-link text-light">What's in Employee Page</a></div>	
+                        </li>
+                    </ul>
+                </section>
+                
+                <section class="col-xs-12 col-sm-6 col-md-2">
+                    <h5 class="widget-title">Get Started<span></span></h5>
+                    <p>Get reimbushment for your expenses.</p>
+                    <p><em><a href="index.html" class="info-link text-light">Login Now</a></em></p>
+                </section>
+                
+                <section class="col-xs-12 col-sm-6 col-md-2">
+                    <h5 class="widget-title">Contact Us<span></span></h5>
+                    <p><a href="mailto:info@domain.com" title="glorythemes" class="info-link text-light">info@domain.com</a></p>
+                    <ul class="social-footer2"></ul>
+                </section>
+
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

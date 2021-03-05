@@ -1,0 +1,8 @@
+.user-option-btn{
+    margin-bottom: 30px;
+    height: 50px;
+    font-size: 20px;
+}
+.user-option-btn:hover, .user-option-btn:active, .user-option-btn:focus{
+    background-color: rgb(96, 160, 212);
+}

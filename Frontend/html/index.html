@@ -23,7 +23,7 @@
         </div>
       </nav>
 
-      <!-- Login panel -->
+      <!-- --------------------------------------------------------------------Login panel-------------------------------------------------------------------- -->
       <div class="card login-panel container shadow margin-content-start">
         <div class="card-body ">
             
@@ -32,8 +32,9 @@
             <span class = "header-md">Login</span>
           </h5>
           <div class="row text-center">
+              <!-- --------------------------------------------------------------------Footer-------------------------------------------------------------------- -->
               <section class="manager-login col-md-6 col-sm-12 margin-bottom-sm margin-horizontal-center">
-                  <form action="" method="POST" class="margin-horizontal-center">
+                  <form name="managerLogin" class="margin-horizontal-center">
                       <fieldset>
                         <legend lcass="text-center">Manager</legend>
                         <div class="form-group row text-left">
@@ -53,11 +54,12 @@
                         <input type="Submit" class="btn btn-primary" value="Sign in">
                       </div>
                   </form>
-                <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+                <!-- Append error here -->
+                  <div id="managerLoginError" class="login-error text-danger"></div>
               </section>
-              <!-- Employee -->
+              <!-- --------------------------------------------------------------------Employee Login-------------------------------------------------------------------- -->
               <section class="employee-login col-md-6 col-sm-12 margin-bottom-sm margin-horizontal-center">
-                <form action="" method="POST" class="margin-horizontal-center">
+                <form name="employeeLogin" class="margin-horizontal-center">
                     <fieldset>
                       <legend lcass="text-center">Employee</legend>
                       <div class="form-group row text-left">
@@ -77,58 +79,56 @@
                       <input type="Submit" class="btn btn-primary" value="Sign in">
                     </div>
                 </form>
-              <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+              <!-- Append error here -->
+                <div id="employeeLoginError" class="login-error text-danger"></div>
             </section>
           </div>
           
         </div>
       </div>
 
-      <footer class="footer bg-darkblue">
-        <div class="container">
-        <div class="row">
-          
-        <div class="col-xs-12 col-sm-6 col-md-5">
-            <div class="widget subscribe no-box">
-                <h5 class="widget-title">
-                    <img src="../img/logo_light.png" class="logo-md">
-                    <img src="../img/logo_text_light.png" class="logo-md nav-logo-text"></h5>
-                <p>#1 in Customer Satisfaction</p>
-                <p>With Direct Retail Banking – Digital Ocean Banking System</p>
-            </div>
-        </div>
-        
-        <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="widget no-box">
-            <h5 class="widget-title">Quick Links<span></span></h5>
-                <ul class="thumbnail-widget">
-                    <li>
-                        <div class="thumb-content"><a href="manager-FAQ.html" target="_blank" class="info-link text-light">What's in Manager Page</a></div>	
-                    </li>
-                    <li>
-                        <div class="thumb-content"><a href="employee-FAQ.html" target="_blank" class="info-link text-light">What's in Employee Page</a></div>	
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="col-xs-12 col-sm-6 col-md-2">
-            <div class="widget no-box">
-                <h5 class="widget-title">Get Started<span></span></h5>
-                <p>Get reimbushment for your expenses.</p>
-                <p><em><a href="index.html" class="info-link text-light">Login Now</a></em></p>
-            </div>
-        </div>
-        
-        <div class="col-xs-12 col-sm-6 col-md-2">
-        
-            <div class="widget no-box">
-                <h5 class="widget-title">Contact Us<span></span></h5>
+        <!-- --------------------------------------------------------------------Footer-------------------------------------------------------------------- -->
+        <footer class="footer bg-darkblue">
+            <div class="container">
+                <div class="row">
                 
-                <p><a href="mailto:info@domain.com" title="glorythemes" class="info-link text-light">info@domain.com</a></p>
-                <ul class="social-footer2"></ul>
+                    <section class="col-xs-12 col-sm-6 col-md-5">
+                        <div class="widget subscribe no-box">
+                            <h5 class="widget-title">
+                                <img src="../img/logo_light.png" class="logo-md">
+                                <img src="../img/logo_text_light.png" class="logo-md nav-logo-text">
+                            </h5>
+                            <p>#1 in Customer Satisfaction</p>
+                            <p>With Direct Retail Banking – Digital Ocean Banking System</p>
+                    </section>
+                    
+                    <section class="col-xs-12 col-sm-6 col-md-3">
+                        <h5 class="widget-title">Quick Links<span></span></h5>
+                        <ul class="thumbnail-widget">
+                            <li>
+                                <div class="thumb-content"><a href="manager-FAQ.html" target="_blank" class="info-link text-light">What's in Manager Page</a></div>	
+                            </li>
+                            <li>
+                                <div class="thumb-content"><a href="employee-FAQ.html" target="_blank" class="info-link text-light">What's in Employee Page</a></div>	
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <section class="col-xs-12 col-sm-6 col-md-2">
+                        <h5 class="widget-title">Get Started<span></span></h5>
+                        <p>Get reimbushment for your expenses.</p>
+                        <p><em><a href="index.html" class="info-link text-light">Login Now</a></em></p>
+                    </section>
+                    
+                    <section class="col-xs-12 col-sm-6 col-md-2">
+                        <h5 class="widget-title">Contact Us<span></span></h5>
+                        <p><a href="mailto:info@domain.com" title="glorythemes" class="info-link text-light">info@domain.com</a></p>
+                        <ul class="social-footer2"></ul>
+                    </section>
+
+                </div>
             </div>
-        </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        </footer>
 </body>
+</html>
 </html>
