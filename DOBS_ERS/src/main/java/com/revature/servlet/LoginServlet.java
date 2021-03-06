@@ -9,8 +9,10 @@ import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.*;
+import com.revature.services.UserService;
+import com.revature.services.UserServiceImp;
 
-import jdk.internal.org.jline.utils.Log;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,8 +30,8 @@ public class LoginServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
-
-		System.out.println("Someone sent a reques--t");
+		UserService uService = new UserServiceImp();
+		
 		BufferedReader reader = req.getReader();
 		StringBuilder s = new StringBuilder();
 		
@@ -47,7 +49,12 @@ public class LoginServlet extends HttpServlet{
 
 		String username = u.getUsername();
 		String password = u.getPassword();	
-			
+		String hashedPassword = uService.logIn(username, password, "employee").getPassword();
+		// Dao layer here, if true
+		
+		u.setUsername(username);
+		u.setPassword(hashedPassword);
+		
 		if (u != null) {
 			// get the current session OR create one if it doesn't exist
 			HttpSession session = req.getSession();

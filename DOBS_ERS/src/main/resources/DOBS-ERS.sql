@@ -6,7 +6,7 @@ drop table if exists employee cascade;
 create table employee (
 	user_id serial primary key,
 	username varchar(50) not null,
-	password varchar(100) not null,
+	password varchar(50) not null,
 	firstname varchar(30) not null,
 	lastname varchar(30) not null,
 	email varchar(100) not null,
@@ -73,3 +73,5 @@ insert into reimbushment (amount, submited, resolved, author, resolver, status_i
 (780, timestamp '2017-6-3 01:22:23', timestamp '2018-10-5 07:22:23', 4, null, 1, 3),
 (5000, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 1, 3);
 -----------------------------------------------------
+
+set crypt('123456','12346')
