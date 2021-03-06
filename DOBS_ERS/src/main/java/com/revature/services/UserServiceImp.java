@@ -15,9 +15,8 @@ public class UserServiceImp implements UserService{
 	
 	@Override
 	public User logIn(String username, String password, String role) {
-		UserDao uDao = new UserDaoImp(); 
-		// Generate salt, which will stored at a plain text with the password so the hask know what to skip
-		
+
+		// Hash password to MD5 byte
 	     MessageDigest md = null;
 		try {
 			md = MessageDigest.getInstance("MD5");
@@ -25,20 +24,22 @@ public class UserServiceImp implements UserService{
 			e.printStackTrace();
 		}
 		byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.UTF_16BE));
+		
+		// Convert hashed password to string
 		 BigInteger bi = new BigInteger(1, hashedPassword );
 		 String hashed = bi.toString(16);
 
-		uDao.checkAuthentication(username, hashed );
+		 // Check user authentication in Database
+		UserDao uDao = new UserDaoImp(); 
+		uDao.checkAuthentication(username, hashed, role );
 		User u = new User();
+		
+		
+		// place holder
 		u.setUsername(username);
 		u.setPassword(hashed);
+		u.setRole(role);
 		return u;
-	}
-
-	@Override
-	public void logOut() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

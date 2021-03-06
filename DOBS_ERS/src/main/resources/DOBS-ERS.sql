@@ -1,6 +1,6 @@
 
 
------------------------------------------------------
+----------------------------------------------------- employee
 drop table if exists employee cascade;
 
 create table employee (
@@ -13,13 +13,15 @@ create table employee (
 	avatar bytea
 );
 
+-- All pasword values are 123456
 insert into employee (username, password, firstname,lastname, email) values 
-('vyle','e10adc3949ba59abbe56e057f20f883e','Vy','Le','thaovyletruong@gmail.com'),
-('thanh','e10adc3949ba59abbe56e057f20f883e','Thanh','Le','thanh.le@revature.net'),
-('cindy','e10adc3949ba59abbe56e057f20f883e','Cindy','Koon','cindy123@gmail.com'),
-('many','e10adc3949ba59abbe56e057f20f883e','Maidy','Moo','maidymoore@protonmail.com'),
-('Wasabi','e10adc3949ba59abbe56e057f20f883e','Washabi','Sashimi','washabi.shi@gmail.com');
------------------------------------------------------
+('vyle','f9dfd39e71e03e3717aa6c7ac03a1cf9','Vy','Le','thaovyletruong@gmail.com'),
+('thanh','f9dfd39e71e03e3717aa6c7ac03a1cf9','Thanh','Le','thanh.le@revature.net'),
+('cindy','f9dfd39e71e03e3717aa6c7ac03a1cf9','Cindy','Koon','cindy123@gmail.com'),
+('many','f9dfd39e71e03e3717aa6c7ac03a1cf9','Maidy','Moo','maidymoore@protonmail.com'),
+('Wasabi','f9dfd39e71e03e3717aa6c7ac03a1cf9','Washabi','Sashimi','washabi.shi@gmail.com');
+
+----------------------------------------------------- manager
 drop table if exists manager cascade;
 
 create table manager (
@@ -27,10 +29,12 @@ create table manager (
 	username varchar(50) not null,
 	password varchar(50) not null
 );
+-- All pasword values are 123456
 insert into manager (username, password) values 
-('manager', 'e10adc3949ba59abbe56e057f20f883e'),
-('rr', 'e10adc3949ba59abbe56e057f20f883e');
------------------------------------------------------
+('manager', 'f9dfd39e71e03e3717aa6c7ac03a1cf9'),
+('rr', 'f9dfd39e71e03e3717aa6c7ac03a1cf9');
+
+----------------------------------------------------- reimbushment type
 drop table if exists reimbushment_type cascade;
 
 create table reimbushment_type (
@@ -40,7 +44,7 @@ create table reimbushment_type (
 
 insert into reimbushment_type (type_value) values ('LODGING'),('TRAVEL'),('FOOD'),('OTHER');
 
------------------------------------------------------
+----------------------------------------------------- reimbushment status
 drop table if exists reimbushment_status cascade;
 
 create table reimbushment_status (
@@ -50,7 +54,7 @@ create table reimbushment_status (
 
 insert into reimbushment_status (status_value) values ('pending'),('resolved'),('deny');
 
------------------------------------------------------
+----------------------------------------------------- reimbushment
 drop table if exists reimbushment cascade;
 
 create table reimbushment (
@@ -72,6 +76,4 @@ insert into reimbushment (amount, submited, resolved, author, resolver, status_i
 (230.7, timestamp '2017-10-12 21:22:23', timestamp '2018-10-5 07:22:23', 2, 1, 2, 4),
 (780, timestamp '2017-6-3 01:22:23', timestamp '2018-10-5 07:22:23', 4, null, 1, 3),
 (5000, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 1, 3);
------------------------------------------------------
 
-set crypt('123456','12346')

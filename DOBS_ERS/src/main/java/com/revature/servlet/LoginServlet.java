@@ -42,6 +42,7 @@ public class LoginServlet extends HttpServlet{
 		}
 		
 		String body = s.toString();
+		System.out.println(body);
 		
 		ObjectMapper om = new ObjectMapper();
 
@@ -49,11 +50,13 @@ public class LoginServlet extends HttpServlet{
 
 		String username = u.getUsername();
 		String password = u.getPassword();	
-		String hashedPassword = uService.logIn(username, password, "employee").getPassword();
-		// Dao layer here, if true
+		String role = u.getRole();
 		
-		u.setUsername(username);
-		u.setPassword(hashedPassword);
+		
+		User user = new User();
+		user = uService.logIn(username, password, role);
+		
+		// Dao layer here, if true
 		
 		if (u != null) {
 			// get the current session OR create one if it doesn't exist
@@ -64,7 +67,7 @@ public class LoginServlet extends HttpServlet{
 			PrintWriter pw = resp.getWriter();
 			resp.setContentType("application/json");
 			
-			pw.println(om.writeValueAsString(u));
+			pw.println(om.writeValueAsString(user));
 	
 		} else {
 			resp.setStatus(204); // Still have a connection, but no user is found
@@ -73,30 +76,6 @@ public class LoginServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
-		//resp.sendRedirect("index.html");
-		
-		ObjectMapper mapper = new ObjectMapper();
-		User u = new User();
-		//u = mapper.readValue(body, User.class);
-		
-		String username = "jjj";
-		String password = "vvvvvvv";
-		
-		u.setUsername(username);
-		u.setPassword(password);
-		
-		System.out.println("----------aa");
-		System.out.println(u.getUsername());
-		
-		if (u != null) {
-			HttpSession session = req.getSession();
-			session.setAttribute(username, username);
-			
-			PrintWriter out = resp.getWriter();
-			resp.setContentType("application/json");
-			
-			String userJSON = mapper.writeValueAsString(u);
-			out.println(u);
-		}
+		resp.sendRedirect("index.html");	
 	}
 }

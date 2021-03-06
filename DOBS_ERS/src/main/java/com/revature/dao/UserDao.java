@@ -1,5 +1,7 @@
 package com.revature.dao;
 
+import com.revature.model.User;
+
 public interface UserDao {
-	public void checkAuthentication(String username, String hashedPassword);
+	public User checkAuthentication(String username, String hashedPassword, String role);
 }
