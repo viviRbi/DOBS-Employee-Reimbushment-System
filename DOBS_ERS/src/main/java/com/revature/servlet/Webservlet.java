@@ -1,4 +1,4 @@
-package com.revature.controller;
+package com.revature.servlet;
 
 public @interface Webservlet {
 

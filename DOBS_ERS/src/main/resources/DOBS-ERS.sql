@@ -13,12 +13,12 @@ create table employee (
 	avatar bytea
 );
 
-insert into employee (username, password, firstname,lastname, email, avatar) values 
-('vyle','e10adc3949ba59abbe56e057f20f883e','Vy','Le','thaovyletruong@gmail.com', null),
-('thanh','e10adc3949ba59abbe56e057f20f883e','Thanh','Le','thanh.le@revature.net', null),
-('cindy','e10adc3949ba59abbe56e057f20f883e','Cindy','Koon','cindy123@gmail.com', null),
-('many','e10adc3949ba59abbe56e057f20f883e','Maidy','Moo','maidymoore@protonmail.com', null),
-('Wasabi','e10adc3949ba59abbe56e057f20f883e','Washabi','Sashimi','washabi.shi@gmail.com', null);
+insert into employee (username, password, firstname,lastname, email) values 
+('vyle','e10adc3949ba59abbe56e057f20f883e','Vy','Le','thaovyletruong@gmail.com'),
+('thanh','e10adc3949ba59abbe56e057f20f883e','Thanh','Le','thanh.le@revature.net'),
+('cindy','e10adc3949ba59abbe56e057f20f883e','Cindy','Koon','cindy123@gmail.com'),
+('many','e10adc3949ba59abbe56e057f20f883e','Maidy','Moo','maidymoore@protonmail.com'),
+('Wasabi','e10adc3949ba59abbe56e057f20f883e','Washabi','Sashimi','washabi.shi@gmail.com');
 -----------------------------------------------------
 drop table if exists manager cascade;
 

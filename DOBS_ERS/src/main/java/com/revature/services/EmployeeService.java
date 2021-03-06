@@ -1,8 +1,8 @@
 package com.revature.services;
 
-public interface EmployeeService extends UserService{
+public interface EmployeeService{
 	// Do not pass receipt img here
-	public void submitReimbushmentRequest(int id, String amount);
+	public void submitReimbushmentRequest(String id, double amount, int type_id);
 	// Use id to retrieve the img
 	public void viewReimbushmentReceipt(int id);
 	
