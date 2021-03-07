@@ -55,10 +55,8 @@ public class LoginServlet extends HttpServlet{
 		
 		User user = new User();
 		user = uService.logIn(username, password, role);
-		
-		// Dao layer here, if true
-		
-		if (u != null) {
+
+		if (user != null) {
 			// get the current session OR create one if it doesn't exist
 			HttpSession session = req.getSession();
 			session.setAttribute("username", username);

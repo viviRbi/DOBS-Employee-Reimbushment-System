@@ -28,17 +28,13 @@ public class UserServiceImp implements UserService{
 		// Convert hashed password to string
 		 BigInteger bi = new BigInteger(1, hashedPassword );
 		 String hashed = bi.toString(16);
-
+		 System.out.println(hashed);
+		 
 		 // Check user authentication in Database
 		UserDao uDao = new UserDaoImp(); 
-		uDao.checkAuthentication(username, hashed, role );
+
 		User u = new User();
-		
-		
-		// place holder
-		u.setUsername(username);
-		u.setPassword(hashed);
-		u.setRole(role);
+		u = uDao.checkAuthentication(username, hashed, role );
 		return u;
 	}
 

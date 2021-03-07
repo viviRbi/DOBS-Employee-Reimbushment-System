@@ -31,4 +31,3 @@ function sendLoginRequest(loginCredential){
        window.location.replace(`${globalVariable.backendRoot}/${(role)}-home.html`)
     }).catch(err => console.log(err))
 }
-

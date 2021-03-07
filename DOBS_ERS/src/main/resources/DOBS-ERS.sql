@@ -10,12 +10,12 @@ create table employee (
 	firstname varchar(30) not null,
 	lastname varchar(30) not null,
 	email varchar(100) not null,
-	avatar bytea
+	avatar varchar
 );
 
 -- All pasword values are 123456
 insert into employee (username, password, firstname,lastname, email) values 
-('vyle','f9dfd39e71e03e3717aa6c7ac03a1cf9','Vy','Le','thaovyletruong@gmail.com'),
+('vyle','ef4dafda494ad517e9823ae7d102a4c8','Vy','Le','thaovyletruong@gmail.com'),
 ('thanh','f9dfd39e71e03e3717aa6c7ac03a1cf9','Thanh','Le','thanh.le@revature.net'),
 ('cindy','f9dfd39e71e03e3717aa6c7ac03a1cf9','Cindy','Koon','cindy123@gmail.com'),
 ('many','f9dfd39e71e03e3717aa6c7ac03a1cf9','Maidy','Moo','maidymoore@protonmail.com'),
@@ -70,10 +70,12 @@ create table reimbushment (
 	foreign key (status_id) references reimbushment_status(status_id),
 	type_id integer not null,
 	foreign key (type_id) references reimbushment_type(type_id),
-	receipt bytea
+	receipt varchar
 );
 insert into reimbushment (amount, submited, resolved, author, resolver, status_id, type_id) values
 (230.7, timestamp '2017-10-12 21:22:23', timestamp '2018-10-5 07:22:23', 2, 1, 2, 4),
 (780, timestamp '2017-6-3 01:22:23', timestamp '2018-10-5 07:22:23', 4, null, 1, 3),
 (5000, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 1, 3);
 
+update manager set password='ef4dafda494ad517e9823ae7d102a4c8';
+update employee set password='ef4dafda494ad517e9823ae7d102a4c8';

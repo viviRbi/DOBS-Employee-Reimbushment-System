@@ -2,9 +2,16 @@ package com.revature.model;
 
 public class User {
 	private String username;
-	private String password;
-	public String role;
+	private String password = null;
+	private String role;
+	private int id = -1;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getUsername() {
 		return username;
 	}
