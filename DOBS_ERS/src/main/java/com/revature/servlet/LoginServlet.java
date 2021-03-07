@@ -52,23 +52,27 @@ public class LoginServlet extends HttpServlet{
 		String password = u.getPassword();	
 		String role = u.getRole();
 		
-		
+		// Get user from Database and check if it's null or not
 		User user = new User();
 		user = uService.logIn(username, password, role);
-
+		
+		// Attaching the print writer to our response
+		PrintWriter pw = resp.getWriter();
+		
 		if (user != null) {
 			// get the current session OR create one if it doesn't exist
 			HttpSession session = req.getSession();
 			session.setAttribute("username", username);
-			
-			// Attaching the print writer to our response
-			PrintWriter pw = resp.getWriter();
 			resp.setContentType("application/json");
-			
 			pw.println(om.writeValueAsString(user));
 	
 		} else {
-			resp.setStatus(204); // Still have a connection, but no user is found
+			SendingError err = new SendingError();
+			err.setErrorType(204);
+			err.setErrorDescription("No Content Found");
+			err.setErrorMessage("Username or password is incorrect");
+			resp.setContentType("application/json");
+			pw.println(om.writeValueAsString(err));
 		}
 	}
 	

@@ -24,6 +24,7 @@
       </nav>
 
       <!-- --------------------------------------------------------------------Login panel-------------------------------------------------------------------- -->
+      <main>
       <div class="card login-panel container shadow margin-content-start">
         <div class="card-body ">
             
@@ -33,7 +34,7 @@
           </h5>
           <div class="row text-center">
               <!-- --------------------------------------------------------------------Manager-------------------------------------------------------------------- -->
-              <section class="manager-login col-md-6 col-sm-12 margin-bottom-sm margin-horizontal-center">
+              <section class="manager-login col-lg-6 col-md-12 margin-bottom-sm margin-horizontal-center">
                   <form name="managerLogin" class="margin-horizontal-center" method="POST" action="">
                       <fieldset>
                         <legend lcass="text-center">Manager</legend>
@@ -51,15 +52,21 @@
                           </div>
                           <input type="hidden" name="inputRole" value= "manager">
                       </fieldset>
-                      <div class="text-right">
-                        <input type="Submit" class="btn btn-primary" value="Sign in" id="employeeLogin">
+                      <div class="row">
+                        <section class="col-10 text-left">
+                          <!-- Append error here -->
+                          <div id="managerLoginError" class="login-error text-danger"></div>
+                        </section>
+                        <section class="col-2 text-right">
+                          <input type="Submit" class="btn btn-primary" value="Sign in" id="managerLogin">
+                        </section>
                       </div>
                   </form>
                 <!-- Append error here -->
                   <div id="managerLoginError" class="login-error text-danger"></div>
               </section>
               <!-- --------------------------------------------------------------------Employee Login-------------------------------------------------------------------- -->
-              <section class="employee-login col-md-6 col-sm-12 margin-bottom-sm margin-horizontal-center">
+              <section class="employee-login col-lg-6 col-md-12 margin-bottom-sm margin-horizontal-center">
                 <form name="employeeLogin" class="margin-horizontal-center" method="POST" action="">
                     <fieldset>
                       <legend lcass="text-center">Employee</legend>
@@ -77,8 +84,14 @@
                         </div>
                         <input type="hidden" name="inputRole" value= "employee">
                     </fieldset>
-                    <div class="text-right">
-                      <input type="submit" class="btn btn-primary" value="Sign in"  id="managerLogin">
+                    <div class="row">
+                      <section class="col-10 text-left">
+                        <!-- Append error here -->
+                          <div id="employeeLoginError" class="login-error text-danger"></div>
+                      </section>
+                      <section class="col-2 text-right">
+                          <input type="Submit" class="btn btn-primary" value="Sign in" id="employeeLogin">
+                      </section>
                     </div>
                 </form>
               <!-- Append error here -->
@@ -130,6 +143,7 @@
 
                 </div>
             </div>
+          </main>
         </footer>
         <script src= "./js/global-variables.js"></script>
         <script src="./js/employee-manager-eventListener.js"></script>

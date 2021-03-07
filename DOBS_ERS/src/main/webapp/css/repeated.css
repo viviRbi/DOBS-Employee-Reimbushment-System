@@ -65,18 +65,27 @@ body {
     border:none;
     box-shadow: none;
 }
-
+/* Main */
+main{
+    padding-bottom: 250px;
+}
 /* Footer */
+
 .footer{
     position: absolute;
     bottom: 0;
     left:0;
     width: 100vw;
     padding: 25px;
-    height:250px;
     color: rgb(209, 216, 228);
 }
 .widget-title{
     margin-bottom: 30px;
     font-weight: 700;
+}
+
+@media screen and (max-width: 720px){
+	main {
+		min-height: 130vh;
+	}
 }

@@ -38,15 +38,12 @@ public class UserDaoImp implements UserDao{
 				System.out.println(u.toString());
 				System.out.println("2");
 			}else {
-				u.setId(55);
-				u.setUsername("dfdf");
-				u.setRole("gg");
 				System.out.println("1");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(u.toString());
+
 		return u;
 	}
 }

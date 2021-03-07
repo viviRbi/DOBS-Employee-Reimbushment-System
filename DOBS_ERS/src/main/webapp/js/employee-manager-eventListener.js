@@ -24,10 +24,21 @@ function sendLoginRequest(loginCredential){
             "Content-type": "application/json; charset=UTF-8",
         }
     }).then(response => response.json())
-    .then(res => {
-        sessionStorage.setItem("user",res)
-        console.log(res)
-        const role = res.role.toLowerCase()
-       window.location.replace(`${globalVariable.backendRoot}/${(role)}-home.html`)
-    }).catch(err => console.log(err))
+    .then(res => loginResponse(res, loginCredential))
+    .catch(err => console.log(err))
+}
+
+// Check info inside obj to see we got error or a valid user
+function loginResponse(res, loginCredential){
+    console.log("----------")
+   var responseType = res.role? 'user' : 'error' 
+    if (responseType === 'user'){
+        console.log("f")
+        sessionStorage.setItem(sessionKey,res)
+        window.location.replace(`${globalVariable.backendRoot}/${(res.role)}-home.html`)
+    } else {
+        console.log("ooo")
+        console.log(`#${loginCredential.role}LoginError`)
+        $(`#${loginCredential.role}LoginError`).text(res.errorMessage)
+    }
 }

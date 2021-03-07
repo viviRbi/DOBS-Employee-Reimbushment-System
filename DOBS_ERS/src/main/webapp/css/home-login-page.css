@@ -24,3 +24,11 @@
 .manager-login legend, .manager-login fieldset, .employee-login legend, .employee-login fieldset{
     margin-bottom: 20px;
 }
+@media screen and (max-width: 720px){
+	main {
+		min-height: 130vh;
+	}
+    .manager-login{
+        border: none;
+    }
+}
