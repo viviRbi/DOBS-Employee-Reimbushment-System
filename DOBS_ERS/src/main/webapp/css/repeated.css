@@ -1,4 +1,9 @@
-/* resuseable resources */
+/* resuseable resources 
+@media follow bootstrap grid
+small max 576 
+mid max 768 
+large the rest 
+*/
 :root{
     --grey-text: rgb(60, 60, 63);
 }
@@ -84,7 +89,7 @@ main{
     font-weight: 700;
 }
 
-@media screen and (max-width: 720px){
+@media screen and (max-width: 768px){
 	main {
 		min-height: 130vh;
 	}

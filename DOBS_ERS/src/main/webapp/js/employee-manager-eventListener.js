@@ -34,7 +34,7 @@ function loginResponse(res, loginCredential){
    var responseType = res.role? 'user' : 'error' 
     if (responseType === 'user'){
         console.log("f")
-        sessionStorage.setItem(sessionKey,res)
+        sessionStorage.setItem(responseType,res)
         window.location.replace(`${globalVariable.backendRoot}/${(res.role)}-home.html`)
     } else {
         console.log("ooo")

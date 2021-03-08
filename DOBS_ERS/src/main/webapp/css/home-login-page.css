@@ -24,7 +24,7 @@
 .manager-login legend, .manager-login fieldset, .employee-login legend, .employee-login fieldset{
     margin-bottom: 20px;
 }
-@media screen and (max-width: 720px){
+@media screen and (max-width: 768px){
 	main {
 		min-height: 130vh;
 	}
