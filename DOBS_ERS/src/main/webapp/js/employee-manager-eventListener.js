@@ -33,6 +33,7 @@
         }
     })();
 
+    // only use these function when the dom fully loaded
 $(document).ready(
     function (){
         //--------------------------------------- Log In ----------------------------------------
@@ -90,4 +91,10 @@ $(document).ready(
     }
 );
 
- 
+//--------------------- Reuseable code for Manager and Employee ----------------------------------------
+
+// alert popUp then fadeout after some times by append an alert message then remove it
+function alertPopUp(selector, message, timeOut=3000){
+    $(selector).append(`<p>${message}</p>`)
+        setTimeout(()=> $(selector).remove(),timeOut)
+}

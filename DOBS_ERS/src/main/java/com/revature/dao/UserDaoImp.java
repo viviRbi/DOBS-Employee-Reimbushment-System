@@ -16,13 +16,12 @@ public class UserDaoImp implements UserDao{
 	
 	@Override
 	public User checkAuthentication(String username, String hashedPassword, String role) {
-		System.out.println("4");
+		
 		try {
 			Connection conn = ConnectionUtil.getConnection();
 			String sql = "SELECT * FROM "+role+" WHERE username=? AND password=?";
 			pstmt = conn.prepareStatement(sql);
 			
-			System.out.println("5");
 			pstmt.setString(1, username);
 			pstmt.setString(2, hashedPassword);
 			
@@ -36,9 +35,6 @@ public class UserDaoImp implements UserDao{
 				u.setRole(role);
 				System.out.println(rs.getString("username"));
 				System.out.println(u.toString());
-				System.out.println("2");
-			}else {
-				System.out.println("1");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

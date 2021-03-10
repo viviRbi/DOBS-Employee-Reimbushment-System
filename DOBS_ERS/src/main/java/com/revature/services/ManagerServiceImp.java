@@ -1,15 +1,13 @@
 package com.revature.services;
 
+import java.util.List;
+
+import com.revature.dao.EmployeeDao;
+import com.revature.dao.EmployeeDaoImp;
+import com.revature.model.Employee;
 import com.revature.model.User;
 
 public class ManagerServiceImp extends UserServiceImp implements ManagerService{
-
-	@Override
-	public User logIn(String username, String password, String role) {
-		return null;
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void approveReimushmentRequest(int managerId, int reimbushmentId) {
@@ -36,9 +34,11 @@ public class ManagerServiceImp extends UserServiceImp implements ManagerService{
 	}
 
 	@Override
-	public void viewAllEmployees() {
+	public List<Employee> viewAllEmployees() {
 		// TODO Auto-generated method stub
-		
+		EmployeeDaoImp eDao = new EmployeeDaoImp();
+		List<Employee> allEmployees = eDao.viewAllEmployees();
+		return allEmployees;
 	}
 
 }

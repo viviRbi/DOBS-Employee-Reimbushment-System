@@ -30,7 +30,9 @@ large the rest
 .margin-content-start{
     margin-top: 50px;
 }  
-
+.pointable{
+    cursor:pointer;
+}
 /* .vertical-line{
     width:5px;
     margin-top: 5px;

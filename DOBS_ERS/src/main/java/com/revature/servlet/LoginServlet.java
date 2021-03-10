@@ -42,30 +42,30 @@ public class LoginServlet extends HttpServlet{
 		}
 		
 		String body = s.toString();
-		System.out.println(body);
 		
 		ObjectMapper om = new ObjectMapper();
 
 		User u = om.readValue(body, User.class); 
-
+		
+		// Get each field of User obj obtained from request 
 		String username = u.getUsername();
 		String password = u.getPassword();	
 		String role = u.getRole();
 		
-		// Get user from Database and check if it's null or not
+		// Get User data in Database
 		User user = new User();
 		user = uService.logIn(username, password, role);
 		
 		// Attaching the print writer to our response
 		PrintWriter pw = resp.getWriter();
 		
+		// If user exist in Database
 		if (user != null) {
 			// get the current session OR create one if it doesn't exist
 			HttpSession session = req.getSession();
 			session.setAttribute("username", username);
 			resp.setContentType("application/json");
 			pw.println(om.writeValueAsString(user));
-	
 		} else {
 			SendingError err = new SendingError();
 			err.setErrorType(204);
@@ -74,6 +74,7 @@ public class LoginServlet extends HttpServlet{
 			resp.setContentType("application/json");
 			pw.println(om.writeValueAsString(err));
 		}
+		pw.close();
 	}
 	
 	@Override

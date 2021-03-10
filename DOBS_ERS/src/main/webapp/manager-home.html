@@ -16,7 +16,7 @@
         <!-- --------------------------------------------------------------------Navbar-------------------------------------------------------------------- -->
   
             <aside class="col-xs-6 text-left">
-                <a rel="home" href="/">
+                <a rel="home" href="/index.html">
                     <img src="./img/logo.png" class="logo-md">
                     <img src="./img/logo_text.png" class="logo-md nav-logo-text">
                 </a>
@@ -32,19 +32,41 @@
                         <!-- Need onclick event, no need for href -->
                       <button class="dropdown-item" type="button" id="employeeProfileBtn">Profile</button>
                       <button class="dropdown-item" type="button" id="employeeEditProfileBtn">Edit</button>
-                      <button class="dropdown-item" type="button" id="logOutBtn">Logout</button>
+                      <a class="logout"><button class="dropdown-item" type="button" id="logOutBtn">Logout</button></a>
                     </div>
                   </div>     
             </aside>
       </nav>
       <!-- --------------------------------------------------------------------Menu button-------------------------------------------------------------------- -->
-      <main class="margin-content-start container-lg">
+      <main class="margin-content-start container-lg" id="managerMenu">
         <a href="submitReimbushmentRequest.html" class="text-light"><button class="btn bg-darkblue text-light shadow form-control user-option-btn">View all pending reimbushment request</button></a>
         <button class="btn bg-darkblue text-light shadow form-control user-option-btn">View all ressolved eimbushment request</button>
         <button class="btn bg-darkblue text-light shadow form-control user-option-btn">View reimbushment request of an employee by id</button>
-        <button class="btn bg-darkblue text-light shadow form-control user-option-btn">View all employees profile</button>
+        <button class="btn bg-darkblue text-light shadow form-control user-option-btn" id="viewAllEmployees">View all employees profile</button>
+        <!-- Error message -->
+        <div class="alert alert-warning" role="alert">
+        </div>
       </main>
 
+      <!-- -------------------------------------------------------------------View All Employee-------------------------------------------------------------------- -->
+      <main class="margin-content-start container-lg d-none" id="displayAllEmployees">
+        <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Username</th>
+                <th scope="col">Firstname</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+            </tbody>
+            
+          </table>
+        <button class="btn bg-darkblue text-light shadow user-option-btn" id="managerHome">Back</button>
+      </main>
       <!-- --------------------------------------------------------------------Footer-------------------------------------------------------------------- -->
     <footer class="footer bg-darkblue">
         <div class="container">
@@ -89,5 +111,6 @@
     </footer>
     <script src= "./js/global-variables.js"></script>
     <script src="./js/employee-manager-eventListener.js"></script>
+    <script src="./js/manager-eventListener.js"></script>
 </body>
 </html>
