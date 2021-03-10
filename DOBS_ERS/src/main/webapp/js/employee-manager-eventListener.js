@@ -39,8 +39,10 @@ $(document).ready(
         //--------------------------------------- Log In ----------------------------------------
         $("#employeeLogin, #managerLogin").click(function(e){
             e.preventDefault()
+            // get the form name of this button
             const loginCredential = getLoginCredential($(e.currentTarget).closest("form").attr("name"))
-            const a = sendLoginRequest(loginCredential)
+            // get login username, role(hidden input) and password
+            sendLoginRequest(loginCredential)
         })
         
         // Get login username and password depends on whichever form submited using its name

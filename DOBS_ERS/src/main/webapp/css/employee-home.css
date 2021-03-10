@@ -1,0 +1,8 @@
+#receiptPlaceholder{
+    max-height: 200px;
+    max-width:200px;
+}
+#receiptPlaceholder img{
+    max-height: 100%;
+    max-width:100%;
+}
