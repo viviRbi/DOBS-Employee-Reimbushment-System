@@ -72,12 +72,12 @@ $(document).ready(
         function loginResponse(res, loginCredential){
             var responseType = res.role? 'user' : 'error' 
             if (responseType === 'user'){
-                sessionStorage.setItem(responseType,JSON.stringify(res))
                 $("#sayHi").text(`Hi ${res.firstname}`)
+                sessionStorage.setItem(responseType,JSON.stringify(res))
                 console.log(res)
                 window.location.replace(`${globalVariable.backendRoot}/${(res.role)}-home.html`)
             } else {
-                $(`#${loginCredential.role}LoginError`).text(res.errorMessage)
+                $(`#${loginCredential.role}LoginError`).text(res.message)
             }
         }
         //--------------------------------------- Log Out ----------------------------------------

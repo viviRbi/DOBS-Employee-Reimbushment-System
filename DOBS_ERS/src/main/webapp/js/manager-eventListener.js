@@ -18,7 +18,7 @@ $(document).ready(function (){
     
     // If there is some data, hide Manager Menu and display Employees table, else send a message
     function displayEmployeeProfiles(data){
-        if (data){
+        if (data[0].id){
             $("main").addClass("d-none")
             $("#displayAllEmployees").removeClass("d-none")
             data.forEach(e => {
@@ -33,7 +33,7 @@ $(document).ready(function (){
                 `)
             });
         } else {
-            alertPopUp("#managerMenu .alert", "Cannot find any employee")
+            alertPopUp("#managerMenu .alert", data.message)
         }
     }
 

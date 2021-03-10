@@ -13,22 +13,18 @@ function sendSubmitReimbushmentRequest(reimbushmentReq){
           },
         body: JSON.stringify(reimbushmentReq),
     }).then (res => res.json())
-    .then (data => console.log(data))
+    .then (data => {
+        if (data.statusCode == 200) alertPopUp("#employeeSubmitReimbushmentSuccess", data.message)
+        else alertPopUp("#employeeSubmitReimbushmentError", data.message)
+    })
 }
 
 function getSubmitReimbushmentInfo(){
-    const amount = $("#submitReimbushmentForm input[name=amount]").val()
-    const type = $("#submitReimbushmentForm select[name=type]").val()
-    const employee_id = JSON.parse(sessionStorage.getItem("user")).id
-    //const receipt = $("input[name=receipt]")[0].files[0];
-    //let formData = new FormData();
-    //formData.append("receipt", receipt)
-    
     const reimbushmentReq = {
-        amount: amount,
-        typeid: type,
-        employeeid: employee_id,
-        //receipt: receipt
+        amount: $("#submitReimbushmentForm input[name=amount]").val(),
+        typeid: $("#submitReimbushmentForm select[name=type]").val(),
+        employeeid: JSON.parse(sessionStorage.getItem("user")).id,
+        //receipt: $("#submitReimbushmentForm input[name=receipt]")[0].files[0]
     }
     //return formData
    return reimbushmentReq
@@ -43,6 +39,5 @@ $("input[name=receipt]").change(function(){
         img.src = reader.result
         $("#receiptPlaceholder").append(img)
     }
-    
     reader.readAsDataURL(this.files[0])
 })

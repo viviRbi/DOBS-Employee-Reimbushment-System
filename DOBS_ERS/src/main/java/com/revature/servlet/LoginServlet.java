@@ -67,10 +67,10 @@ public class LoginServlet extends HttpServlet{
 			resp.setContentType("application/json");
 			pw.println(om.writeValueAsString(user));
 		} else {
-			SendingError err = new SendingError();
-			err.setErrorType(204);
-			err.setErrorDescription("No Content Found");
-			err.setErrorMessage("Username or password is incorrect");
+			SendingAlert err = new SendingAlert();
+			err.setStatusCode(204);
+			err.setDescription("No Content Found");
+			err.setMessage("Username or password is incorrect");
 			resp.setContentType("application/json");
 			pw.println(om.writeValueAsString(err));
 		}

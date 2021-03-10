@@ -15,7 +15,7 @@ import com.revature.services.ManagerServiceImp;
 import com.revature.services.UserServiceImp;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.Employee;
-import com.revature.model.SendingError;
+import com.revature.model.SendingAlert;
 
 @WebServlet("/allEmployees")
 public class viewAllEmployeesServlet extends HttpServlet{
@@ -37,10 +37,10 @@ public class viewAllEmployeesServlet extends HttpServlet{
 			String jsonEmployees = om.writeValueAsString(allEmployees);
 			pw.println(jsonEmployees);
 		}else {
-			SendingError err = new SendingError();
-			err.setErrorType(204);
-			err.setErrorDescription("No Content Found");
-			err.setErrorMessage("There is no employee. Something goes wrong");
+			SendingAlert err = new SendingAlert();
+			err.setStatusCode(204);
+			err.setDescription("No Content Found");
+			err.setMessage("There is no employee. Something goes wrong");
 			resp.setContentType("application/json");
 			pw.println(om.writeValueAsString(err));
 		}

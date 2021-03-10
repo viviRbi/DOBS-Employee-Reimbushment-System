@@ -17,12 +17,15 @@ import javax.servlet.http.Part;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.Reimbushment;
+import com.revature.model.SendingAlert;
 import com.revature.model.User;
+import com.revature.services.EmployeeService;
+import com.revature.services.EmployeeServiceImp;
 
 @WebServlet("/submitReimbushment")
-@MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
-maxFileSize=1024*1024*10,      // 10MB
-maxRequestSize=1024*1024*50)
+//@MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
+//maxFileSize=1024*1024*10,      // 10MB
+//maxRequestSize=1024*1024*50)
 
 public class SubmitReimbushment extends HttpServlet{
 	 private static final long serialVersionUID = 1L;
@@ -30,7 +33,9 @@ public class SubmitReimbushment extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
 		ObjectMapper om = new ObjectMapper();
+		PrintWriter pw = resp.getWriter();
 		Reimbushment reI = new Reimbushment();
+		
 		
 		System.out.println("-----------");
 		BufferedReader reader = req.getReader();
@@ -44,6 +49,9 @@ public class SubmitReimbushment extends HttpServlet{
 		
 		String data = s.toString();
 		reI = om.readValue(data, Reimbushment.class);
+		
+		EmployeeService es = new EmployeeServiceImp();
+		boolean submited = es.submitReimbushmentRequest( reI.getTypeid(), reI.getAmount(), reI.getEmployeeid());
 		
 		// Testing image file
 		/*Part receiptPath = req.getPart("receipt");
@@ -65,9 +73,21 @@ public class SubmitReimbushment extends HttpServlet{
 		if(inputStream != null) inputStream.close();
 		if(outputStream != null) outputStream.close();*/
 		
-		PrintWriter pw = resp.getWriter();
-		resp.setContentType("application/json");
-		pw.println(om.writeValueAsString(reI));
+		if (submited == true) {
+			SendingAlert info = new SendingAlert();
+			info.setStatusCode(200);
+			info.setDescription("Submited");
+			info.setMessage("Your reimbushment form had been submited");
+			resp.setContentType("application/json");
+			pw.println(om.writeValueAsString(info));
+		} else {
+			SendingAlert info = new SendingAlert();
+			info.setStatusCode(500);
+			info.setDescription("Fail to save data to database");
+			info.setMessage("Sorry, your reimbushment form cannot be submited for now");
+			resp.setContentType("application/json");
+			pw.println(om.writeValueAsString(info));
+		}
 		
 	}
 }
