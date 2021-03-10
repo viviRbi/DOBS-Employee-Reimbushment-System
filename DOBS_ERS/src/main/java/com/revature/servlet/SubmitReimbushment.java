@@ -36,8 +36,6 @@ public class SubmitReimbushment extends HttpServlet{
 		PrintWriter pw = resp.getWriter();
 		Reimbushment reI = new Reimbushment();
 		
-		
-		System.out.println("-----------");
 		BufferedReader reader = req.getReader();
 		StringBuilder s = new StringBuilder();
 		

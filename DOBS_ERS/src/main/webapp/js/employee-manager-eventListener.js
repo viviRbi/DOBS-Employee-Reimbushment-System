@@ -1,5 +1,5 @@
 
-
+//---------------------------------------------------------------------------------------------------------------------------------------------
 //--------------------- Redirect if doesn't have permission to view a webpage ----------------------------------------
     
     // redirect to home page if trying to go to employee or manager page while not a user
@@ -16,24 +16,25 @@
     (function (){
         let user = JSON.parse(sessionStorage.getItem('user'))
         if (Boolean(user)){
-            console.log(user)
+            //console.log(user)
             const role = user.role
-            console.log(role)
             let currentUrl = window.location.href
             switch (role){
                 case "employee":
-                    if (currentUrl.includes(globalVariable.backendRoot + "/manager"))
-                        window.location.replace(globalVariable.backendRoot+"/employee-home.html")
+                    if (currentUrl.includes(globalVariable.backendRoot + "/manager") || currentUrl.includes(globalVariable.backendRoot + "/login"))
+                        window.location.replace(globalVariable.backendRoot+"/employee-home.html")                       
                     break
                 case "manager":
-                    if (currentUrl.includes(globalVariable.backendRoot + "/employee"))
+                    if (currentUrl.includes(globalVariable.backendRoot + "/employee")|| currentUrl.includes(globalVariable.backendRoot + "/login"))
                         window.location.replace(globalVariable.backendRoot+"/manager-home.html")
                     break
             }
         }
     })();
 
-    // only use these function when the dom fully loaded
+//---------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------ Log in and Log out ----------------------------------------
+// only use these function when the dom fully loaded
 $(document).ready(
     function (){
         //--------------------------------------- Log In ----------------------------------------
@@ -92,7 +93,33 @@ $(document).ready(
     }
 );
 
-//--------------------- Reuseable code for Manager and Employee ----------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------- Get Reimbushment Requests of an employee By Id ----------------------------------------
+(function (){
+    // get employee id from Json data in session
+    const eid = JSON.parse(sessionStorage.getItem("user")).id
+    // Employee menu button
+    $("#reimbushmentPendingReq").click(()=>{
+        fetch(globalVariable.backendRoot + "/viewReimbushmentRequestById?status=pending&eid="+ eid)
+        .then(res => res.json())
+        .then(data=> console.log(data))
+    })
+    $("#reimbushmentResolvedReq").click(()=>{
+        fetch(globalVariable.backendRoot + "/viewReimbushmentRequestById?status=resolved&eid="+ eid)
+        .then(res => res.json())
+        .then(data=> console.log(data))
+    })
+    // Manager menu Button
+    $("#reimbushmentReqOfOneEmp").click(()=>{
+        fetch(globalVariable.backendRoot + "/viewReimbushmentRequestById?status=all&eid="+ eid)
+        .then(res => res.json())
+        .then(data=> console.log(data))
+    })
+})()
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------- Reuseable code for Manager and Employee ----------------------------------------
 
 // alert popUp then fadeout after some times by append an alert message then remove it
 function alertPopUp(selector, message, timeOut=3000){

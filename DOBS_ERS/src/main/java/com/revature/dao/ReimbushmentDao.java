@@ -1,7 +1,11 @@
 package com.revature.dao;
 
+import java.util.List;
+
+import com.revature.model.Reimbushment;
+
 public interface ReimbushmentDao {
 	
-	public void viewReimbushmentRequestById(String id);
+	public List<Reimbushment> viewReimbushmentRequestById(String id);
 	
 }

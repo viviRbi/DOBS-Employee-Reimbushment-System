@@ -1,10 +1,14 @@
 
+//---------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------- Submit Reimbushment Request ----------------------------------------
+// Functions called when Click submit
 $("#submitReimbushmentBtn").click(function(e) {
     e.preventDefault()
     let reimbushmentReq = getSubmitReimbushmentInfo()
     sendSubmitReimbushmentRequest(reimbushmentReq)
     })
 
+    // send request
 function sendSubmitReimbushmentRequest(reimbushmentReq){
     fetch(globalVariable.backendRoot + "/submitReimbushment", {
         method: "POST",
@@ -18,7 +22,7 @@ function sendSubmitReimbushmentRequest(reimbushmentReq){
         else alertPopUp("#employeeSubmitReimbushmentError", data.message)
     })
 }
-
+// get request body parameter
 function getSubmitReimbushmentInfo(){
     const reimbushmentReq = {
         amount: $("#submitReimbushmentForm input[name=amount]").val(),
