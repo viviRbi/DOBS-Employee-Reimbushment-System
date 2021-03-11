@@ -54,6 +54,7 @@ public class ReimbushmentDaoUsedByEmpImp extends ReimbushmentDaoImp implements R
 	public List<Reimbushment> viewAllResolveReimbushmentRequestById(int id) {
 		List<Reimbushment> reList = new ArrayList<>();
 		Connection conn = null;
+		System.out.println("resolved dao");
 		try {
 			conn = ConnectionUtil.getConnection();
 			String sql = "SELECT * FROM reimbushment WHERE author = ? and status_id=?";

@@ -27,17 +27,17 @@ public class ViewResolvedRequestById extends HttpServlet{
 		int eid = Integer.parseInt(req.getParameter("eid"));
 		System.out.println(eid);
 		EmployeeService e = new EmployeeServiceImp();	
-		List<Reimbushment> allPending = e.viewPendingReimbushmentRequestById(eid);
+		List<Reimbushment> allResolved = e.viewResolveReimbushmentRequestById(eid);
 		
-		System.out.println("view all pending request by id");
-		System.out.println(allPending);
+		System.out.println("view all resolved request by id");
+		System.out.println(allResolved);
 		// Prepare to write response
 		PrintWriter pw = resp.getWriter();
 		
 		// If able to get at least 1 employee
-		if (allPending != null) {
+		if (allResolved != null) {
 			resp.setContentType("application/json");
-			String jsonReIs = om.writeValueAsString(allPending);
+			String jsonReIs = om.writeValueAsString(allResolved);
 			pw.println(jsonReIs);
 		}else {
 			SendingAlert err = new SendingAlert();

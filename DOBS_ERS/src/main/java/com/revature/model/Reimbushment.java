@@ -18,7 +18,7 @@ public class Reimbushment {
 	@Override
 	public String toString() {
 		return "Reimbushment [id=" + id + ", amount=" + amount + ", submited=" + submited + ", resolved=" + resolved
-				+ ", statusid=" + statusid + ", typeid=" + typeid + ", employeeid=" + author + "] = receipt = "+ receipt;
+				+ ", statusid=" + statusid + ", typeid=" + typeid + ", author=" + author + "] = receipt = "+ receipt;
 	}
 	public int getId() {
 		return id;

@@ -61,13 +61,13 @@ function getReimbushmentRequestOfOneEmp(eid){
 
         // Manager menu Button
         //view all Pending
-        $("#viewAllPendinReimbushmentRequest").click(()=>{
+        $("#viewAllPendingReimbushmentRequest").click(()=>{
             fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=pending&eid=-1")
             .then(res => res.json())
             .then(data=> console.log(data))
         })
         // view all Resolved
-        $("#viewAllPendinReimbushmentRequest").click(()=>{
+        $("#viewAllResolvedReimbushmentRequest").click(()=>{
             fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=resolved&eid=-1")
             .then(res => res.json())
             .then(data=> console.log(data))

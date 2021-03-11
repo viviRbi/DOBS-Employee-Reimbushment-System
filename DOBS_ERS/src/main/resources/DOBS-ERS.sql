@@ -73,9 +73,14 @@ create table reimbushment (
 	receipt bytea
 );
 insert into reimbushment (amount, submited, resolved, author, resolver, status_id, type_id, receipt) values
-(230.7, timestamp '2017-10-12 21:22:23', timestamp '2018-10-5 07:22:23', 2, 1, 2, 4, null),
-(780, timestamp '2017-6-3 01:22:23', timestamp '2018-10-5 07:22:23', 4, null, 1, 3, null),
-(5000, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 1, 3, null);
+(230.7, timestamp '2017-10-12 21:22:23', timestamp '2018-10-5 07:22:23', 2, 2, 2, 4, null),
+(780, timestamp '2017-6-3 01:22:23', timestamp '2018-10-5 07:22:23', 4, null, 1, 1, null),
+(5000, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 1, 3, null),
+(50, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 2, 2, null),
+(230.7, timestamp '2017-10-12 21:22:23', timestamp '2018-10-5 07:22:23', 2, 2, 2, 4, null),
+(780, timestamp '2017-6-3 01:22:23', timestamp '2018-10-5 07:22:23', 4, null, 1, 1, null),
+(5000, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 2, 3, null),
+(50, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 2, 2, null);
 
 select * from reimbushment where author = 4;
 update manager set password='ef4dafda494ad517e9823ae7d102a4c8';

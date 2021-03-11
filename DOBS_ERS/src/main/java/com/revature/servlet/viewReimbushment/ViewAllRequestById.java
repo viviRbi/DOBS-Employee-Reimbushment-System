@@ -10,12 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.services.ManagerService;
-import com.revature.services.ManagerServiceImp;
 import com.revature.services.UserService;
 import com.revature.services.UserServiceImp;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.model.Employee;
 import com.revature.model.Reimbushment;
 import com.revature.model.SendingAlert;
 
