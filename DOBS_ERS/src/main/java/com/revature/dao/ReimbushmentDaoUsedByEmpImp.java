@@ -2,12 +2,16 @@ package com.revature.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import com.revature.model.Reimbushment;
 import com.revature.util.ConnectionUtil;
 
 public class ReimbushmentDaoUsedByEmpImp extends ReimbushmentDaoImp implements ReimbushmentDaoUsedByEmp{
@@ -45,5 +49,74 @@ public class ReimbushmentDaoUsedByEmpImp extends ReimbushmentDaoImp implements R
 		}
 		return submited;
 	}
+	
+	@Override
+	public List<Reimbushment> viewAllResolveReimbushmentRequestById(int id) {
+		List<Reimbushment> reList = new ArrayList<>();
+		Connection conn = null;
+		try {
+			conn = ConnectionUtil.getConnection();
+			String sql = "SELECT * FROM reimbushment WHERE author = ? and status_id=?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,id);
+			// 1: pending, 2:resolved, 3: reject
+			pstmt.setInt(2,2);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				//id, amount, submited, resolved, author, resolver, status_id, type_id, receipt
+				Reimbushment reI = new Reimbushment();
+				reI.setId(rs.getInt("id"));
+				reI.setAmount(rs.getDouble("amount"));
+				reI.setSubmited(rs.getTimestamp("submited"));
+				reI.setResolved(rs.getTimestamp("resolved"));
+				reI.setAuthor(id);
+				reI.setResolver(rs.getInt("resolver"));
+				reI.setStatusid(rs.getInt("status_id"));
+				reI.setTypeid(rs.getInt("type_id"));
+				reI.setReceipt(rs.getBytes("receipt"));
+				reList.add(reI);
+				System.out.println(reI.toString());
+			}
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return reList;
+	}
+
+	@Override
+	public List<Reimbushment> viewAllPendingReimbushmentRequestById(int id) {
+		List<Reimbushment> reList = new ArrayList<>();
+		Connection conn = null;
+		try {
+			conn = ConnectionUtil.getConnection();
+			String sql = "SELECT * FROM reimbushment WHERE author = ? and status_id=?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,id);
+			// 1: pending, 2:resolved, 3: reject
+			pstmt.setInt(2,1);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				//id, amount, submited, resolved, author, resolver, status_id, type_id, receipt
+				Reimbushment reI = new Reimbushment();
+				reI.setId(rs.getInt("id"));
+				reI.setAmount(rs.getDouble("amount"));
+				reI.setSubmited(rs.getTimestamp("submited"));
+				reI.setResolved(rs.getTimestamp("resolved"));
+				reI.setAuthor(id);
+				reI.setResolver(rs.getInt("resolver"));
+				reI.setStatusid(rs.getInt("status_id"));
+				reI.setTypeid(rs.getInt("type_id"));
+				reI.setReceipt(rs.getBytes("receipt"));
+				reList.add(reI);
+				System.out.println(reI.toString());
+			}
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return reList;
+	}
 
 }
+

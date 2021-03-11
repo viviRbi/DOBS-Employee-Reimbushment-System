@@ -13,15 +13,35 @@ import com.revature.util.ConnectionUtil;
 public class EmployeeDaoImp extends UserDaoImp implements EmployeeDao{
 
 	@Override
-	public void viewProfile(int id) {
-		System.out.println("as");
-		
+	public Employee viewProfile(int id) {
+		try {
+			Connection conn = ConnectionUtil.getConnection();
+			String sql = "";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
-	public void updateProfile(int id) {
-		System.out.println("as");
-		
+	public Employee updateProfile(int id) {
+		try {
+			Connection conn = ConnectionUtil.getConnection();
+			String sql = "";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override

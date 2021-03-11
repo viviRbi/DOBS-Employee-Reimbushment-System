@@ -58,7 +58,8 @@ public class viewReimbushmentRequestServletController extends HttpServlet{
 			rd.forward(req, resp);
 			break;
 		default:
-			resp.sendRedirect("/index.html");
+			// Wrong url or doesn't have permission = homepage
+			//resp.sendRedirect("index.html");
 		}
 	}
 }
