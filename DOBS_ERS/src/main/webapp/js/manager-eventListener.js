@@ -21,17 +21,18 @@ $(document).ready(function (){
         if (data[0].id){
             $("main").addClass("d-none")
             $("#displayAllEmployees").removeClass("d-none")
-            data.forEach(e => {
+            for(let i= 0; i<data.length; i++) {
                 $("#displayAllEmployees tbody").append(`
-                    <tr class="pointable" id=${e.id}>
-                        <td>${e.id}</td>
-                        <td>${e.username}</td>
-                        <td>${e.firstname}</td>
-                        <td>${e.lastname}</td>
-                        <td>${e.email}</td>
+                    <tr class="pointable" id=${data[i].id}>
+                        <td>${data[i].id}</td>
+                        <td>${data[i].username}</td>
+                        <td>${data[i].firstname}</td>
+                        <td>${data[i].lastname}</td>
+                        <td>${data[i].email}</td>
                     </tr>
                 `)
-            });
+                $("#displayAllEmployees tbody tr")[i].addEventListener('click', () => getReimbushmentRequestOfOneEmp(data[i].id))
+            }
         } else {
             alertPopUp("#managerMenu .alert", data.message)
         }
@@ -45,3 +46,31 @@ $(document).ready(function (){
     }
 });
 
+//---------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------- Get Reimbushment Requests ----------------------------------------
+function getReimbushmentRequestOfOneEmp(eid){
+    console.log(eid)
+    fetch(globalVariable.backendRoot + "/viewReimbushmentRequestById?status=pending&eid="+eid)
+    .then(res => res.json())
+    .then(data=> console.log(data))
+}
+
+(function (){
+    // if the user session exists
+    if (Boolean(sessionStorage.getItem("user"))== true){
+
+        // Manager menu Button
+        //view all Pending
+        $("#viewAllPendinReimbushmentRequest").click(()=>{
+            fetch(globalVariable.backendRoot + "/viewReimbushmentRequestById?status=pending&eid=-1")
+            .then(res => res.json())
+            .then(data=> console.log(data))
+        })
+        // view all Resolved
+        $("#viewAllPendinReimbushmentRequest").click(()=>{
+            fetch(globalVariable.backendRoot + "/viewReimbushmentRequestById?status=resolved&eid=-1")
+            .then(res => res.json())
+            .then(data=> console.log(data))
+        })
+    }  
+})()

@@ -41,18 +41,25 @@ $(document).ready(
         $("#employeeLogin, #managerLogin").click(function(e){
             e.preventDefault()
             // get the form name of this button
-            const loginCredential = getLoginCredential($(e.currentTarget).closest("form").attr("name"))
+            const formName = $(e.currentTarget).closest("form").attr("name")
+            const loginCredential = getLoginCredential(formName)
+            console.log(loginCredential)
             // get login username, role(hidden input) and password
             sendLoginRequest(loginCredential)
         })
         
         // Get login username and password depends on whichever form submited using its name
         function getLoginCredential(formName){
+        		const username= $(`[name=${formName}] input[name=inputUserName]`).val()
+                const  password = $(`[name=${formName}] input[name=inputPassword]`).val()
+                const  role = $(`[name=${formName}] input[name=inputRole]`).val()
+ 
             let loginCredential= {
-                username : $(`[name=${formName}] input[name=inputUserName]`).val(),
-                password : $(`[name=${formName}] input[name=inputPassword]`).val(),
-                role : $(`[name=${formName}] input[name=inputRole]`).val()
+                username : username,
+                password : password,
+                role : role
             }
+            console.log(loginCredential)
             return loginCredential
         }
         
@@ -61,12 +68,14 @@ $(document).ready(
             fetch(globalVariable.backendRoot + "/login", {
                 method: "POST",
                 body: JSON.stringify(loginCredential),
-                headers: {
+               headers: {
                     "Content-type": "application/json; charset=UTF-8",
                 }
             }).then(response => response.json())
-            .then(res => loginResponse(res, loginCredential))
-            .catch(err => console.log(err))
+            	.then(res => {
+            		if(res) loginResponse(res, loginCredential)
+            		else  alertPopUp(".header-md","No response")
+            })
         }
         
         // Check info inside obj to see we got error or a valid user
