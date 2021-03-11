@@ -7,6 +7,10 @@ public class Employee extends User {
 	private String email;
 	private String avatar = null;
 	
+	public Employee() {
+		super();
+		this.setRole("employee");
+	}
 	public String getFirstname() {
 		return firstname;
 	}

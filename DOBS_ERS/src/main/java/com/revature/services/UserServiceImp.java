@@ -20,19 +20,8 @@ public class UserServiceImp implements UserService{
 	@Override
 	public User logIn(String username, String password, String role) {
 		
-		// Hash password to MD5 byte
-	     MessageDigest md = null;
-	     
-		try {
-			md = MessageDigest.getInstance("MD5");
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.UTF_16BE));
 		
-		// Convert hashed password to string
-		 BigInteger bi = new BigInteger(1, hashedPassword );
-		 String hashed = bi.toString(16);
+		 String hashed = hashPassword(password);
 		 
 		 // Check user authentication in Database
 		UserDao uDao = new UserDaoImp(); 
@@ -47,6 +36,25 @@ public class UserServiceImp implements UserService{
 		ReimbushmentDao rDao = new ReimbushmentDaoImp(); 
 		List<Reimbushment> reList = rDao.viewReimbushmentRequestById(eid);
 		return reList;
+	}
+	
+	@Override
+	public String hashPassword(String password) {
+		// Hash password to MD5 byte
+	     MessageDigest md = null;
+	     
+		try {
+			md = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.UTF_16BE));
+		
+		// Convert hashed password to string
+		 BigInteger bi = new BigInteger(1, hashedPassword );
+		 String hashed = bi.toString(16);
+		 
+		 return hashed;
 	}
 
 }

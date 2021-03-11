@@ -9,4 +9,5 @@ import com.revature.model.Reimbushment;
 public interface UserService {
 	public User logIn (String username, String password, String role);
 	public List<Reimbushment> viewAllReimbushmentRequestById(int id);
+	public String hashPassword(String password); 
 }

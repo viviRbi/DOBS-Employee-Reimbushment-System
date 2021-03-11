@@ -24,7 +24,6 @@ public class ViewEmployeeProfile extends HttpServlet{
 	// Change to do post later
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
-		System.out.println("Employee Profile");
 		
 		int eid = Integer.parseInt(req.getParameter("eid"));
 		
