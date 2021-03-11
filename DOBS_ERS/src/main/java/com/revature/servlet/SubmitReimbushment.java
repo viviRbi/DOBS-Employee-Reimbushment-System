@@ -49,7 +49,7 @@ public class SubmitReimbushment extends HttpServlet{
 		reI = om.readValue(data, Reimbushment.class);
 		
 		EmployeeService es = new EmployeeServiceImp();
-		boolean submited = es.submitReimbushmentRequest( reI.getTypeid(), reI.getAmount(), reI.getEmployeeid());
+		boolean submited = es.submitReimbushmentRequest( reI.getTypeid(), reI.getAmount(), reI.getAuthor());
 		
 		// Testing image file
 		/*Part receiptPath = req.getPart("receipt");

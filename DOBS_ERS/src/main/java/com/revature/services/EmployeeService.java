@@ -1,12 +1,15 @@
 package com.revature.services;
+import java.util.List;
+
+import com.revature.model.Employee;
+import com.revature.model.Reimbushment;
 
 public interface EmployeeService{
-	// Do not pass receipt img here
-	public boolean submitReimbushmentRequest(int eid, double amount, int type_id);
-	// Use id to retrieve the img
-	public void viewPendingReimbushmentRequestById(int id);
 	
-	public void viewResolveReimbushmentRequestById(int id);
-	public void viewProfile(int id);
-	public void updateProfile(int id);
+	public boolean submitReimbushmentRequest(int eid, double amount, int type_id);
+	public List<Reimbushment> viewPendingReimbushmentRequestById(int id);
+	
+	public List<Reimbushment> viewResolveReimbushmentRequestById(int id);
+	public Employee viewProfile(int id);
+	public Employee updateProfile(int id);
 }

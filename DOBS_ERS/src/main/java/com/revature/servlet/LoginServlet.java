@@ -64,6 +64,7 @@ public class LoginServlet extends HttpServlet{
 			// get the current session OR create one if it doesn't exist
 			HttpSession session = req.getSession();
 			session.setAttribute("username", username);
+			session.setAttribute("role", role);
 			resp.setContentType("application/json");
 			pw.println(om.writeValueAsString(user));
 		} else {

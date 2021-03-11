@@ -1,35 +1,34 @@
 package com.revature.dao;
 
+import java.util.List;
+
+import com.revature.model.Reimbushment;
+
 public class ReimbushmentDaoUsedByMaImp extends ReimbushmentDaoImp implements ReimbushmentDaoUsedByMa{
 
 	@Override
-	public void viewReimbushmentReceipt(int id) {
+	public List<Reimbushment> viewAllResolveReimbushmentRequestById(int id) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public void viewAllResolveReimbushmentRequestById(int id) {
+	public List<Reimbushment> viewAllPendingReimbushmentRequestById(int id) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public void viewAllPendingReimbushmentRequestById(int id) {
+	public boolean rejectReimbushmentRequests(int[] id) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
-	public void rejectReimbushmentRequests(int[] id) {
+	public boolean approvedReimbushmentRequestById(int[] id) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
-	@Override
-	public void approvedReimbushmentRequestById(int[] id) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 }

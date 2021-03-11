@@ -50,7 +50,7 @@ $(document).ready(function (){
 //----------------------------------------------- Get Reimbushment Requests ----------------------------------------
 function getReimbushmentRequestOfOneEmp(eid){
     console.log(eid)
-    fetch(globalVariable.backendRoot + "/viewReimbushmentRequestById?status=pending&eid="+eid)
+    fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=pending&eid="+eid)
     .then(res => res.json())
     .then(data=> console.log(data))
 }
@@ -62,13 +62,13 @@ function getReimbushmentRequestOfOneEmp(eid){
         // Manager menu Button
         //view all Pending
         $("#viewAllPendinReimbushmentRequest").click(()=>{
-            fetch(globalVariable.backendRoot + "/viewReimbushmentRequestById?status=pending&eid=-1")
+            fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=pending&eid=-1")
             .then(res => res.json())
             .then(data=> console.log(data))
         })
         // view all Resolved
         $("#viewAllPendinReimbushmentRequest").click(()=>{
-            fetch(globalVariable.backendRoot + "/viewReimbushmentRequestById?status=resolved&eid=-1")
+            fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=resolved&eid=-1")
             .then(res => res.json())
             .then(data=> console.log(data))
         })

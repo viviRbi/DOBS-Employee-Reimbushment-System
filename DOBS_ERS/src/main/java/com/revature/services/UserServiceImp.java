@@ -8,6 +8,8 @@ import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.List;
 
+import com.revature.dao.ReimbushmentDao;
+import com.revature.dao.ReimbushmentDaoImp;
 import com.revature.dao.UserDao;
 import com.revature.dao.UserDaoImp;
 import com.revature.model.Reimbushment;
@@ -41,9 +43,10 @@ public class UserServiceImp implements UserService{
 	}
 
 	@Override
-	public List<Reimbushment> viewPendingReimbushMentRequestsById(int id) {
-		
-		return null;
+	public List<Reimbushment> viewAllReimbushmentRequestById(int eid) {
+		ReimbushmentDao rDao = new ReimbushmentDaoImp(); 
+		List<Reimbushment> reList = rDao.viewReimbushmentRequestById(eid);
+		return reList;
 	}
 
 }

@@ -8,5 +8,5 @@ import com.revature.model.Reimbushment;
 
 public interface UserService {
 	public User logIn (String username, String password, String role);
-	public List<Reimbushment> viewPendingReimbushMentRequestsById(int id);
+	public List<Reimbushment> viewAllReimbushmentRequestById(int id);
 }

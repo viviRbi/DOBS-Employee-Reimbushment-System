@@ -106,24 +106,25 @@ $(document).ready(
 //----------------------------------------------- Get Reimbushment Requests of an employee By Id ----------------------------------------
 (function (){
     // get employee id from Json data in session
-    const eid = JSON.parse(sessionStorage.getItem("user")).id
-    // Employee menu button
-    $("#reimbushmentPendingReq").click(()=>{
-        fetch(globalVariable.backendRoot + "/viewReimbushmentRequestById?status=pending&eid="+ eid)
-        .then(res => res.json())
-        .then(data=> console.log(data))
-    })
-    $("#reimbushmentResolvedReq").click(()=>{
-        fetch(globalVariable.backendRoot + "/viewReimbushmentRequestById?status=resolved&eid="+ eid)
-        .then(res => res.json())
-        .then(data=> console.log(data))
-    })
-    // Manager menu Button
-    $("#reimbushmentReqOfOneEmp").click(()=>{
-        fetch(globalVariable.backendRoot + "/viewReimbushmentRequestById?status=all&eid="+ eid)
-        .then(res => res.json())
-        .then(data=> console.log(data))
-    })
+    if (Boolean(sessionStorage.getItem("user")) == true){
+	    const eid = JSON.parse(sessionStorage.getItem("user")).id
+	    // Employee menu button
+	    $("#reimbushmentPendingReq").click(()=>{
+	        fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=pending&eid="+ eid)
+	      //  .then(res => res.json())
+	      //  .then(data=> console.log(data))
+	    })
+	    $("#reimbushmentResolvedReq").click(()=>{
+	        fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=resolved&eid="+ eid)
+	       // .then(res => res.json())
+	       // .then(data=> console.log(data))
+	    })
+        $("#reimbushmentAllReq").click(()=>{
+	        fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=all&eid="+ eid)
+	       .then(res => res.json())
+	       .then(data=> console.log(data))
+	    })
+    }
 })()
 
 
