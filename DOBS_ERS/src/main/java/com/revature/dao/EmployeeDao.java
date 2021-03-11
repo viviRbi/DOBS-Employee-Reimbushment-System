@@ -7,7 +7,7 @@ import com.revature.model.Employee;
 public interface EmployeeDao {
 	
 		public Employee viewProfile(int id);
-		public Employee updateProfile(int id);
+		public boolean updateProfile(Employee e);
 		
 		public List<Employee> viewAllEmployees();
 }

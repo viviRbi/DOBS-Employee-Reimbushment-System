@@ -1,4 +1,4 @@
-package com.revature.servlet;
+package com.revature.servlet.logInOut;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

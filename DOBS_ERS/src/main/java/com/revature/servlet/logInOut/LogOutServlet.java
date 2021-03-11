@@ -1,4 +1,4 @@
-package com.revature.servlet;
+package com.revature.servlet.logInOut;
 
 import java.io.IOException;
 

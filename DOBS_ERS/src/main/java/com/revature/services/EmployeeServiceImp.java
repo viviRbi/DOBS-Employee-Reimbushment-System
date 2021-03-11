@@ -33,16 +33,17 @@ public class EmployeeServiceImp implements EmployeeService{
 	}
 
 	@Override
-	public Employee viewProfile(int id) {
+	public Employee viewProfile(int eid) {
 		EmployeeDao eDao = new EmployeeDaoImp();
-		Employee eProfile;
-		return null;
+		Employee eProfile = eDao.viewProfile(eid);
+		return eProfile;
 	}
 
 	@Override
-	public Employee updateProfile(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean updateProfile(Employee e) {
+		EmployeeDao eDao = new EmployeeDaoImp();
+		boolean updated= eDao.updateProfile(e);
+		return updated;
 	}
 
 }
