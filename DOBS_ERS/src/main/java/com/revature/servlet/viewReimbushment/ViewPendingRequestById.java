@@ -27,6 +27,7 @@ public class ViewPendingRequestById extends HttpServlet{
 		int eid = Integer.parseInt(req.getParameter("eid"));
 		System.out.println(eid);
 		EmployeeService e = new EmployeeServiceImp();	
+		
 		List<Reimbushment> allPending = e.viewPendingReimbushmentRequestById(eid);
 		
 		System.out.println("view all pending request by id");

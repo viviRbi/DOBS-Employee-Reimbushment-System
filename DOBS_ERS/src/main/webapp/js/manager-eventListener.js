@@ -61,7 +61,7 @@ $(document).ready(function (){
 //----------------------------------------------- View all Reimbushment of 1 employee----------------------------------------
 function getReimbushmentRequestOfOneEmp(eid){
     console.log(eid)
-    fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=pending&eid="+eid)
+    fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=all&eid="+eid)
     .then(res => res.json())
     .then(data=> {
         if(data != null)
@@ -193,8 +193,8 @@ function approveRejectReimbushment(actionType){
 
 // remove approved, rejected row immediately in frontend (since user need to refresh the page for it to update) 
 function removeApprovedRejectedRow(idArray){
-    for (let i=0; i< idArray; i++){
-        $(`#displayReimbushmentForm tr#${idArray[i]}`).remove()
+    for (let i=0; i< idArray.length; i++){
+        $(`#displayReimbushmentForm tr#${idArray[i]}`).addClass('d-none')
     }
 }
 //-------------------------------------------------------END APPROVE/ REJECT REIMBUSHMENT----------------------------------------------------------------------
