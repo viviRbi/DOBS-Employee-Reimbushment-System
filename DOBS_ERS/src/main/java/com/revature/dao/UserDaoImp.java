@@ -40,4 +40,10 @@ public class UserDaoImp implements UserDao{
 
 		return u;
 	}
+
+	@Override
+	public String getUserNameById(String columName, String tableName, int user_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

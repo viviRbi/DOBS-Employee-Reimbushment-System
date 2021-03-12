@@ -66,6 +66,69 @@
           </table>
         <button class="btn bg-darkblue text-light shadow user-option-btn" id="managerHome">Back</button>
       </main>
+
+<!-- -------------------------------------------------------------------View Reimbushment Request for Pending and 1 employee-------------------------------------------------------------------- -->
+      <main class="margin-content-start container-lg d-none" id="displayReimbushment">
+          <div class= "alert"></div>
+        <form id = "displayReimbushmentForm">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Submited</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Resolved</th>
+                        <th scope="col">Resolver</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Select</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                </tbody>
+                
+            </table>
+            <div class="row">
+                <div class="col-6">
+                    <button class="btn bg-darkblue text-light shadow user-option-btn" id="managerHome">Back</button>
+                </div>
+                <div class="col-6">
+                    <button class="btn bg-darkblue text-light shadow user-option-btn" id="rejectReimbushment">Reject</button>
+                    <button class="btn bg-darkblue text-light shadow user-option-btn" id="approveReimbushment">Accept</button>
+                </div>
+            </div>
+            <form>
+      </main>
+
+<!-- -------------------------------------------------------------------View Resolved Reimbushment Request -------------------------------------------------------------------- -->
+<main class="margin-content-start container-lg d-none" id="displayResolvedReimbushment">
+    <!-- change form name to submit and query button for click event
+    Author format: id- authorUserName  -->
+      <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Submited</th>
+                  <th scope="col">Resolved</th>
+                  <th scope="col">Author</th>
+                  <th scope="col">Resolver</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Status</th>
+            </tr>
+        </thead>
+          
+        <tbody>
+        </tbody>
+          
+      </table>
+      
+    <button class="btn bg-darkblue text-light shadow user-option-btn" id="managerHome">Back</button>
+          
+      
+</main>
       <!-- --------------------------------------------------------------------Footer-------------------------------------------------------------------- -->
     <footer class="footer bg-darkblue">
         <div class="container">

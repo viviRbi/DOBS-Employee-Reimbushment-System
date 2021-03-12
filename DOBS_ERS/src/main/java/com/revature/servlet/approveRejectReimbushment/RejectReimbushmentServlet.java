@@ -26,11 +26,16 @@ public class RejectReimbushmentServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
 		
 		//Get session and check user role
-		//HttpSession session = req.getSession();
-		//String role = (String) session.getAttribute("role");
-		//int id = (int) session.getAttribute("id");
+		HttpSession session = req.getSession();
+		String role = (String) session.getAttribute("role");
+		int id = (int) session.getAttribute("id");
 		
-		//if (role == "manager") {
+		System.out.println(role);
+		PrintWriter pw = resp.getWriter();
+		
+		SendingAlert alert = new SendingAlert();
+		
+		if (role.contentEquals("manager")) {
 			BufferedReader reader = req.getReader();
 			StringBuilder s = new StringBuilder();
 			
@@ -39,19 +44,16 @@ public class RejectReimbushmentServlet extends HttpServlet{
 				s.append(line);
 				line = reader.readLine();
 			}
-			
 			String body = s.toString();
-			System.out.println(body);
+			System.out.println("reject");
 			ObjectMapper om = new ObjectMapper();
 	
 			// get all checked id
 			Integer[] approvedIds = om.readValue(body, Integer[].class);
 			ManagerService m = new ManagerServiceImp();
-			boolean rejected = m.denyReimbushmentRequest(2, approvedIds);
+			boolean rejected = m.denyReimbushmentRequest(id, approvedIds);
 			
-			PrintWriter pw = resp.getWriter();
 			
-			SendingAlert alert = new SendingAlert();
 			if (rejected) {
 				alert.setStatusCode(200);
 				alert.setDescription("Successfully Reject");
@@ -66,11 +68,16 @@ public class RejectReimbushmentServlet extends HttpServlet{
 				resp.setContentType("application/json");
 				pw.println(om.writeValueAsString(alert));
 			}
+		}else {
+			alert.setStatusCode(204);
+			alert.setDescription("No Content Found");
+			alert.setMessage("Please log in as a manager");
+			resp.setContentType("application/json");
+			pw.println(om.writeValueAsString(alert));
+		}
 
-		//}
-		
-				
 	}
+		
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {

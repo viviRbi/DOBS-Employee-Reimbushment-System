@@ -15,11 +15,31 @@ public class Reimbushment {
 	private int author;
 	private int resolver;
 	private byte[] receipt = null;
+	private String authorUserName = null;
+	private String resolverUserName = null;
+	
 	@Override
 	public String toString() {
 		return "Reimbushment [id=" + id + ", amount=" + amount + ", submited=" + submited + ", resolved=" + resolved
 				+ ", statusid=" + statusid + ", typeid=" + typeid + ", author=" + author + "] = receipt = "+ receipt;
 	}
+	
+	public String getAuthorUserName() {
+		return authorUserName;
+	}
+
+	public void setAuthorUserName(String authorUserName) {
+		this.authorUserName = authorUserName;
+	}
+
+	public String getResolverUserName() {
+		return resolverUserName;
+	}
+
+	public void setResolverUserName(String resolverUserName) {
+		this.resolverUserName = resolverUserName;
+	}
+
 	public int getId() {
 		return id;
 	}

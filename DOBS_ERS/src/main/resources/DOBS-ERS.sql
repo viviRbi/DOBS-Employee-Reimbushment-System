@@ -76,12 +76,25 @@ insert into reimbushment (amount, submited, resolved, author, resolver, status_i
 (230.7, timestamp '2017-10-12 21:22:23', timestamp '2018-10-5 07:22:23', 2, 2, 2, 4, null),
 (780, timestamp '2017-6-3 01:22:23', timestamp '2018-10-5 07:22:23', 4, null, 1, 1, null),
 (5000, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 1, 3, null),
-(50, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 2, 2, null),
+(50, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 3, null, 2, 2, null),
 (230.7, timestamp '2017-10-12 21:22:23', timestamp '2018-10-5 07:22:23', 2, 2, 2, 4, null),
 (780, timestamp '2017-6-3 01:22:23', timestamp '2018-10-5 07:22:23', 4, null, 1, 1, null),
 (5000, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 2, 3, null),
-(50, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 2, 2, null);
+(50, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 5, null, 1, 2, null),
+(230.7, timestamp '2017-10-12 21:22:23', timestamp '2018-10-5 07:22:23', 2, 1, 2, 4, null),
+(780, timestamp '2017-6-3 01:22:23', timestamp '2018-10-5 07:22:23', 4, null, 2, 1, null),
+(5000, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 2, 3, null),
+(50, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 3, null, 1, 2, null),
+(230.7, timestamp '2017-10-12 21:22:23', timestamp '2018-10-5 07:22:23', 2, 1, 2, 4, null),
+(780, timestamp '2017-6-3 01:22:23', timestamp '2018-10-5 07:22:23', 4, null, 1, 1, null),
+(5000, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 1, 3, null),
+(780, timestamp '2017-6-3 01:22:23', timestamp '2018-10-5 07:22:23', 4, null, 2, 1, null),
+(5000, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 3, 3, null),
+(50, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 3, null, 1, 2, null),
+(230.7, timestamp '2017-10-12 21:22:23', timestamp '2018-10-5 07:22:23', 2, 1, 3, 4, null),
+(780, timestamp '2017-6-3 01:22:23', timestamp '2018-10-5 07:22:23', 4, null, 2, 1, null),
+(5000, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 3, 3, null),
+(50, timestamp '2020-1-3 21:22:23', timestamp '2020-01-5 07:55:00', 1, null, 1, 2, null);
 
 select * from reimbushment where author = 4;
-update manager set password='ef4dafda494ad517e9823ae7d102a4c8';
-update employee set password='ef4dafda494ad517e9823ae7d102a4c8';
+update reimbushment set resolved = '1900-01-01 00:00:00.000', resolver = null where status_id  = 1;

@@ -111,13 +111,13 @@ $(document).ready(
 	    // Employee menu button
 	    $("#reimbushmentPendingReq").click(()=>{
 	        fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=pending&eid="+ eid)
-	      //  .then(res => res.json())
-	      //  .then(data=> console.log(data))
+	        .then(res => res.json())
+	        .then(data=> console.log(data))
 	    })
 	    $("#reimbushmentResolvedReq").click(()=>{
 	        fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=resolved&eid="+ eid)
-	       // .then(res => res.json())
-	       // .then(data=> console.log(data))
+	        .then(res => res.json())
+	        .then(data=> console.log(data))
 	    })
         $("#reimbushmentAllReq").click(()=>{
 	        fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=all&eid="+ eid)

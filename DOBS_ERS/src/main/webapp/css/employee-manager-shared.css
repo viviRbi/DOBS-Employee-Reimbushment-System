@@ -6,3 +6,6 @@
 .user-option-btn:hover, .user-option-btn:active, .user-option-btn:focus{
     background-color: rgb(96, 160, 212);
 }
+.statusPending{color: peru}
+.statusResolved{color: green}
+.statusReject{color: red}
