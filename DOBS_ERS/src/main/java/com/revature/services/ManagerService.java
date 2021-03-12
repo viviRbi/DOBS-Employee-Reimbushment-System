@@ -5,8 +5,8 @@ import com.revature.model.Employee;
 import com.revature.model.Reimbushment;
 
 public interface ManagerService{
-	public boolean approveReimushmentRequest(int managerId, int reimbushmentId);
-	public boolean denyReimbushmentRequest(int managerId, int reimbushmentId);
+	public boolean approveReimushmentRequest(int managerId, Integer[] approvedIds);
+	public boolean denyReimbushmentRequest(int managerId, Integer[] reimbushmentId);
 	public List<Reimbushment> viewAllPendingReimbushment();
 	public List<Reimbushment> viewAllResolvedReimbushment();
 	//public void viewAllOfImagesOfReceipts();

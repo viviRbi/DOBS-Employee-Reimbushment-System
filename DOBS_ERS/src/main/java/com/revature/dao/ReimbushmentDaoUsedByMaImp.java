@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.revature.model.Employee;
@@ -14,35 +16,83 @@ import com.revature.util.ConnectionUtil;
 public class ReimbushmentDaoUsedByMaImp extends ReimbushmentDaoImp implements ReimbushmentDaoUsedByMa{
 
 	@Override
-	public boolean rejectReimbushmentRequests(int[] id) {
+	public boolean rejectReimbushmentRequests(int managerId, Integer[] reimbushmentId) {
+		boolean rejected = false;
 		try {
 			Connection conn = ConnectionUtil.getConnection();
-			String sql = "";
+			
+			// Get date
+			Date d=new Date();
+			SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy   HH:mma z EEE");
+			java.sql.Timestamp ts = new java.sql.Timestamp(d.getTime());
+						
+			// Divide sql stament to loop all array of id to ?,?,?)
+			String sql = "UPDATE reimbushment SET status_id=?, resolver=?, resolved=? WHERE id IN(";
+			
+			for (int i =0; i<reimbushmentId.length; i++) {
+				sql += "?,";
+			};
+			// Remove last comma and add ")" at the end of query
+			sql = sql.substring(0,sql.lastIndexOf(",")) + ")";
+			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
-				
+			pstmt.setInt(1, 3);
+			pstmt.setInt(2, managerId);
+			pstmt.setTimestamp(3, ts);
+			
+			// for loop for Prepare Statement. Loop though each id
+			for (int i =0; i<reimbushmentId.length; i++) {
+				pstmt.setInt(4+i, reimbushmentId[i]);
 			}
+			
+			if(pstmt.executeUpdate() != 0)
+				rejected = true;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		return false;
+			
+		} 
+		return rejected;
 	}
 
 	@Override
-	public boolean approvedReimbushmentRequestById(int[] id) {
+	public boolean approvedReimbushmentRequestById(int managerId, Integer[] reimbushmentId) {
+		boolean approved = false;
 		try {
 			Connection conn = ConnectionUtil.getConnection();
-			String sql = "";
+			
+			// Get date
+			Date d=new Date();
+			SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy   HH:mma z EEE");
+			java.sql.Timestamp ts = new java.sql.Timestamp(d.getTime());
+						
+			// Divide sql stament to loop all array of id to ?,?,?)
+			String sql = "UPDATE reimbushment SET status_id=?, resolver=?, resolved=? WHERE id IN(";
+			
+			for (int i =0; i<reimbushmentId.length; i++) {
+				sql += "?,";
+			};
+			// Remove last comma and add ")" at the end of query
+			sql = sql.substring(0,sql.lastIndexOf(",")) + ")";
+			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
-				
+			pstmt.setInt(1, 2);
+			pstmt.setInt(2, managerId);
+			pstmt.setTimestamp(3, ts);
+			
+			// for loop for Prepare Statement. Loop though each id
+			for (int i =0; i<reimbushmentId.length; i++) {
+				pstmt.setInt(4+i, reimbushmentId[i]);
 			}
+			
+			if(pstmt.executeUpdate() != 0)
+				approved = true;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return approved;
+
 	}
 
 	@Override

@@ -20,16 +20,16 @@ public class ManagerServiceImp extends UserServiceImp implements ManagerService{
 	}
 
 	@Override
-	public boolean approveReimushmentRequest(int managerId, int reimbushmentId) {
+	public boolean approveReimushmentRequest(int managerId, Integer[] reimbushmentId) {
 		ReimbushmentDaoUsedByMa reDao = new ReimbushmentDaoUsedByMaImp();
-		boolean approved = reDao.approvedReimbushmentRequestById(null);
+		boolean approved = reDao.approvedReimbushmentRequestById(managerId, reimbushmentId);
 		return approved;
 	}
 
 	@Override
-	public boolean denyReimbushmentRequest(int managerId, int reimbushmentId) {
+	public boolean denyReimbushmentRequest(int managerId, Integer[] reimbushmentId) {
 		ReimbushmentDaoUsedByMa reDao = new ReimbushmentDaoUsedByMaImp();
-		boolean reject = reDao.rejectReimbushmentRequests(null);
+		boolean reject = reDao.rejectReimbushmentRequests(managerId, reimbushmentId);
 		return reject;
 	}
 

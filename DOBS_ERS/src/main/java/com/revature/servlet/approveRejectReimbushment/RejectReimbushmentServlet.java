@@ -13,12 +13,11 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.SendingAlert;
-import com.revature.model.User;
 import com.revature.services.ManagerService;
 import com.revature.services.ManagerServiceImp;
 
-@WebServlet("/manager/approveReimbushment")
-public class ApproveReimbushmentServlet extends HttpServlet{
+@WebServlet("/manager/rejectReimbushment")
+public class RejectReimbushmentServlet extends HttpServlet{
 	public static final long serialVersionUID = 1L;
 	// Convert obj to json and vice versa
 	ObjectMapper om = new ObjectMapper();
@@ -48,22 +47,22 @@ public class ApproveReimbushmentServlet extends HttpServlet{
 			// get all checked id
 			Integer[] approvedIds = om.readValue(body, Integer[].class);
 			ManagerService m = new ManagerServiceImp();
-			boolean approved = m.approveReimushmentRequest(2, approvedIds);
+			boolean rejected = m.denyReimbushmentRequest(2, approvedIds);
 			
 			PrintWriter pw = resp.getWriter();
 			
 			SendingAlert alert = new SendingAlert();
-			if (approved) {
+			if (rejected) {
 				alert.setStatusCode(200);
-				alert.setDescription("Approve");
-				alert.setMessage("Sucessfully approve the requests");
+				alert.setDescription("Successfully Reject");
+				alert.setMessage("Sucessfully reject the requests");
 				resp.setContentType("application/json");
 				pw.println(om.writeValueAsString(alert));
 	
 			} else {
 				alert.setStatusCode(204);
 				alert.setDescription("No Content Found");
-				alert.setMessage("Fail to approve the requests");
+				alert.setMessage("Fail to reject the requests");
 				resp.setContentType("application/json");
 				pw.println(om.writeValueAsString(alert));
 			}

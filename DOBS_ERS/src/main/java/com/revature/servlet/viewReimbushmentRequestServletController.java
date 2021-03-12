@@ -22,7 +22,6 @@ public class viewReimbushmentRequestServletController extends HttpServlet{
 		//Get session and check user role
 		HttpSession session = req.getSession();
 		String role = (String) session.getAttribute("role");
-		System.out.println(role);
 		
 		String status = req.getParameter("status");
 		int eid = Integer.parseInt(req.getParameter("eid"));

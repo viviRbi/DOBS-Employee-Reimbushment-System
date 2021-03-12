@@ -65,6 +65,7 @@ public class LoginServlet extends HttpServlet{
 			HttpSession session = req.getSession();
 			session.setAttribute("username", username);
 			session.setAttribute("role", role);
+			session.setAttribute("id", user.getId());
 			resp.setContentType("application/json");
 			pw.println(om.writeValueAsString(user));
 		} else {

@@ -25,7 +25,7 @@ public class ViewAllRequestById extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
 		int eid = Integer.parseInt(req.getParameter("eid"));
-		System.out.println(eid);
+
 		UserService u = new UserServiceImp();	
 		List<Reimbushment> allRe = u.viewAllReimbushmentRequestById(eid) ;
 		

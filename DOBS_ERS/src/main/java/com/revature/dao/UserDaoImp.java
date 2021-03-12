@@ -33,8 +33,6 @@ public class UserDaoImp implements UserDao{
 				u.setId(rs.getInt("user_id"));
 				u.setUsername(rs.getString("username"));
 				u.setRole(role);
-				System.out.println(rs.getString("username"));
-				System.out.println(u.toString());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
