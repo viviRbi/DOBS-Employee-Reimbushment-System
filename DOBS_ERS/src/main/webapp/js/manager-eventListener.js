@@ -57,9 +57,6 @@ $(document).ready(function (){
         $("#managerMenu").removeClass("d-none")
     }
 });
-//-------------------------------------------------------VIEW REIMBUSHMENT----------------------------------------------------------------------
-//---------------------------------------------------------------------------------------------------------------------------------------------
-
 
 //---------------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------- View Pending/ Ressolved Reimbushment ----------------------------------------
@@ -92,22 +89,14 @@ $(document).ready(function (){
                     alertPopUp("#managerMenu .alert", "No data found")
             })
         })
-        //
-    }  
-})()
-
-//-------------------------------------------------------END VIEW REIMBUSHMENT----------------------------------------------------------------------
-
-//-------------------------------------------------------APPROVE/ REJECT REIMBUSHMENT----------------------------------------------------------------------
-(function (){
-    // get user role from session
-    let user = JSON.parse(sessionStorage.getItem("user"))
-    if (user.role== "manager"){
+        // Approve/ Reject event 
         approveRejectReimbushment("approve")
         approveRejectReimbushment("reject")
-        
     }  
-})()
+})();
+
+//-------------------------------------------------------APPROVE/ REJECT REIMBUSHMENT CALLBACK FUNC----------------------------------------------------------------------
+
 
 // fetch approve/reject API
 function approveRejectReimbushment(actionType){

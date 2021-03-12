@@ -106,7 +106,6 @@ $(document).ready(
 //------------------------------------- Get Reimbushment Requests of an employee By Id, used by both employee and manager ----------------------------------------
 //----------------------------------------------- View all Reimbushment of 1 employee----------------------------------------
 function getReimbushmentRequestOfOneEmp(eid){
-    console.log("reimbushment requesr")
     fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=all&eid="+eid)
     .then(res => res.json())
     .then(data=> {

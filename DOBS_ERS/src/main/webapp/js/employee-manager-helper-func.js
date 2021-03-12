@@ -28,7 +28,7 @@ function displayReimbushment(data, queryValue){
                     <td>${data[i].submited}</td>
                     <td>${data[i].author +' - '+ data[i].authorName}</td>
                     ${data[i].resolver >0?'<td>'+data[i].resolved+'</td>' : '<td>Not yet</td>'}
-                    ${data[i].resolver >0?'<td>'+data[i].resolver+'</td>' : '<td>No author</td>'}
+                    ${data[i].resolver >0?'<td>'+data[i].resolver+'</td>' : '<td>Not yet</td>'}
                     <td >${typeName(data[i].typeid)}</td>
                    <td class="status${statusName[data[i].statusid-1]}">${statusName[data[i].statusid-1]}</td>
                     ${user.role =="manager" && data[i].statusid == 1 ?'<td><input name="selected" type="checkbox" value='+data[i].id+'></td>' : '<td></td>'}
