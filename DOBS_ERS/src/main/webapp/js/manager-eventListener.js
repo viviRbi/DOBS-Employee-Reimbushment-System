@@ -35,6 +35,7 @@ $(document).ready(function (){
                         <td>${data[i].email}</td>
                     </tr>
                 `)
+                // get Reimbushment Request Of One Employee base on clicked table row
                 $("#displayAllEmployees tbody tr")[i].addEventListener('click', () => getReimbushmentRequestOfOneEmp(data[i].id))
             }
         } else {
@@ -58,18 +59,7 @@ $(document).ready(function (){
 });
 //-------------------------------------------------------VIEW REIMBUSHMENT----------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------- View all Reimbushment of 1 employee----------------------------------------
-function getReimbushmentRequestOfOneEmp(eid){
-    console.log(eid)
-    fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=all&eid="+eid)
-    .then(res => res.json())
-    .then(data=> {
-        if(data != null)
-            displayReimbushment(data, "#displayReimbushment")
-        else
-            alertPopUp("#managerMenu .alert", "No data found")
-    })
-}
+
 
 //---------------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------- View Pending/ Ressolved Reimbushment ----------------------------------------
@@ -84,6 +74,7 @@ function getReimbushmentRequestOfOneEmp(eid){
             .then(res => res.json())
             .then(data=> {
                 if(data != null)
+                // in employee-manager-helper-func
                     displayReimbushment(data, "#displayReimbushment")
                 else
                     alertPopUp("#managerMenu .alert", "No data found")
@@ -95,61 +86,16 @@ function getReimbushmentRequestOfOneEmp(eid){
             .then(res => res.json())
             .then(data=> {
                 if(data != null)
+                // in employee-manager-helper-func
                     displayReimbushment(data, "#displayResolvedReimbushment")
                 else
                     alertPopUp("#managerMenu .alert", "No data found")
             })
         })
+        //
     }  
 })()
 
-// // Callback function to display reimbushment info in a table body
-function displayReimbushment(data, queryValue){
-    
-    if (data[0].id){
-        $("main").addClass("d-none")
-        $(queryValue).removeClass("d-none")
-        // get status name in the for loop base on position of statusName array
-        let statusName= ["Pending", "Resolved", "Reject"]
-        for(let i= 0; i<data.length; i++) {
-        	//let statusName= ["Pending", "Resolved", "Reject"]
-            // if there is a resolver id, display info, else, value = -----
-            $(queryValue+ " tbody").append(`
-                <tr class="pointable" id=${data[i].id}>
-                    <td>${data[i].id}</td>
-                    <td>${data[i].amount}</td>
-                    <td>${data[i].submited}</td>
-                    <td>${data[i].author +' - '+ data[i].authorName}</td>
-                    ${data[i].resolver >0?'<td>'+data[i].resolved+'</td>' : '<td>Not yet</td>'}
-                    ${data[i].resolver >0?'<td>'+data[i].resolver+'</td>' : '<td>No author</td>'}
-                    <td >${typeName(data[i].typeid)}</td>
-                   <td class="status${statusName[data[i].statusid-1]}">${statusName[data[i].statusid-1]}</td>
-                    ${data[i].statusid == 1 ?'<td><input name="selected" type="checkbox" value='+data[i].id+'></td>' : '<td></td>'}
-                </tr>
-            `)
-        }
-    } else {
-        alertPopUp("#managerMenu .alert", data.message)
-    }
-}
-
-function typeName(typeID){
-    let typeName;
-    switch (typeID){
-        case 1:
-            typeName = 'LODGING'
-            break
-        case 2:
-            typeName = 'TRAVEL'
-            break
-        case 3:
-            typeName = 'FOOD'
-            break
-        default:
-            typeName = 'OTHER'
-    }
-    return typeName
-}
 //-------------------------------------------------------END VIEW REIMBUSHMENT----------------------------------------------------------------------
 
 //-------------------------------------------------------APPROVE/ REJECT REIMBUSHMENT----------------------------------------------------------------------

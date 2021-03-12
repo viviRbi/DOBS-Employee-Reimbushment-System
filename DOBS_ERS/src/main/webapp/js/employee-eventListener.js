@@ -1,5 +1,27 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------- Get Reimbushment Requests of an employee By Id ----------------------------------------
+// Employee menu button
+(function (){
+    let user = JSON.parse(sessionStorage.getItem("user"))
+    const eid = user.id
+    if (user.role == "employee"){
+        $("#reimbushmentPendingReq").click(()=>{
+            fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=pending&eid="+ eid)
+            .then(res => res.json())
+            .then(data=> console.log(data))
+        })
+        $("#reimbushmentResolvedReq").click(()=>{
+            fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=resolved&eid="+ eid)
+            .then(res => res.json())
+            .then(data=> console.log(data))
+        })
+         // get employee id from Json data in session
+        $("#reimbushmentAllReq").click(()=> getReimbushmentRequestOfOneEmp(eid))
+    }
+})()
+
+//---------------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------- Submit Reimbushment Request ----------------------------------------
 // Functions called when Click submit
 $("#submitReimbushmentBtn").click(function(e) {
@@ -45,3 +67,25 @@ $("input[name=receipt]").change(function(){
     }
     reader.readAsDataURL(this.files[0])
 })
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------- Get Reimbushment Requests of an employee By Id ----------------------------------------
+// Employee menu button
+// $("#reimbushmentPendingReq").click(()=>{
+//     fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=pending&eid="+ eid)
+//     .then(res => res.json())
+//     .then(data=> console.log(data))
+// })
+// $("#reimbushmentResolvedReq").click(()=>{
+//     fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=resolved&eid="+ eid)
+//     .then(res => res.json())
+//     .then(data=> console.log(data))
+// })
+//  // get employee id from Json data in session
+//  if (Boolean(sessionStorage.getItem("user")) == true){
+//     $("#reimbushmentAllReq").click(()=>{
+//         let user = JSON.parse(sessionStorage.getItem("user"))
+//         getReimbushmentRequestOfOneEmp(user.id)
+//     })
+// }

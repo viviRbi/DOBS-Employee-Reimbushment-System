@@ -103,36 +103,17 @@ $(document).ready(
 );
 
 //---------------------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------- Get Reimbushment Requests of an employee By Id ----------------------------------------
-(function (){
-    // get employee id from Json data in session
-    if (Boolean(sessionStorage.getItem("user")) == true){
-	    const eid = JSON.parse(sessionStorage.getItem("user")).id
-	    // Employee menu button
-	    $("#reimbushmentPendingReq").click(()=>{
-	        fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=pending&eid="+ eid)
-	        .then(res => res.json())
-	        .then(data=> console.log(data))
-	    })
-	    $("#reimbushmentResolvedReq").click(()=>{
-	        fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=resolved&eid="+ eid)
-	        .then(res => res.json())
-	        .then(data=> console.log(data))
-	    })
-        $("#reimbushmentAllReq").click(()=>{
-	        fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=all&eid="+ eid)
-	       .then(res => res.json())
-	       .then(data=> console.log(data))
-	    })
-    }
-})()
-
-
-//---------------------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------- Reuseable code for Manager and Employee ----------------------------------------
-
-// alert popUp then fadeout after some times by append an alert message then remove it
-function alertPopUp(selector, message, timeOut=3000){
-    $(selector).append(`<p>${message}</p>`)
-        setTimeout(()=> $(selector).remove(),timeOut)
+//------------------------------------- Get Reimbushment Requests of an employee By Id, used by both employee and manager ----------------------------------------
+//----------------------------------------------- View all Reimbushment of 1 employee----------------------------------------
+function getReimbushmentRequestOfOneEmp(eid){
+    console.log("reimbushment requesr")
+    fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=all&eid="+eid)
+    .then(res => res.json())
+    .then(data=> {
+        if(data != null){
+            console.log(data)
+            displayReimbushment(data, "#displayReimbushment")
+    }else
+            alertPopUp("#managerMenu .alert", "No data found")
+    })
 }
