@@ -26,7 +26,6 @@ public class UserDaoImp implements UserDao{
 			pstmt.setString(2, hashedPassword);
 			
 			ResultSet rs = pstmt.executeQuery();
-			System.out.println("3");
 			
 			if (rs.next()) {
 				u = new User();
@@ -43,7 +42,24 @@ public class UserDaoImp implements UserDao{
 
 	@Override
 	public String getUserNameById(String columName, String tableName, int user_id) {
-		// TODO Auto-generated method stub
-		return null;
+		String username = null;
+		try {
+			Connection conn = ConnectionUtil.getConnection();
+			String sql = "SELECT "+columName+" FROM "+tableName+" WHERE user_id = ? ";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, user_id);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				username = rs.getString("username");
+				System.out.println(username);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return username;
 	}
 }

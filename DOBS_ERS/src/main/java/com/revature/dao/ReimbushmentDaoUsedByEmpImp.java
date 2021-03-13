@@ -55,6 +55,7 @@ public class ReimbushmentDaoUsedByEmpImp extends ReimbushmentDaoImp implements R
 		List<Reimbushment> reList = new ArrayList<>();
 		Connection conn = null;
 		System.out.println("resolved dao");
+		UserDao uDao = new UserDaoImp(); 
 		try {
 			conn = ConnectionUtil.getConnection();
 			String sql = "SELECT * FROM reimbushment WHERE author = ? and status_id=?";
@@ -75,6 +76,8 @@ public class ReimbushmentDaoUsedByEmpImp extends ReimbushmentDaoImp implements R
 				reI.setStatusid(rs.getInt("status_id"));
 				reI.setTypeid(rs.getInt("type_id"));
 				reI.setReceipt(rs.getBytes("receipt"));
+				reI.setAuthorUserName(uDao.getUserNameById("username", "employee", id));
+				reI.setResolverUserName(uDao.getUserNameById("username", "manager", id));
 				reList.add(reI);
 				System.out.println(reI.toString());
 			}
@@ -87,6 +90,7 @@ public class ReimbushmentDaoUsedByEmpImp extends ReimbushmentDaoImp implements R
 
 	@Override
 	public List<Reimbushment> viewAllPendingReimbushmentRequestById(int id) {
+		UserDao uDao = new UserDaoImp();
 		List<Reimbushment> reList = new ArrayList<>();
 		Connection conn = null;
 		try {
@@ -110,6 +114,8 @@ public class ReimbushmentDaoUsedByEmpImp extends ReimbushmentDaoImp implements R
 				reI.setTypeid(rs.getInt("type_id"));
 				reI.setReceipt(rs.getBytes("receipt"));
 				reList.add(reI);
+				reI.setAuthorUserName(uDao.getUserNameById("username", "employee", id));
+				reI.setResolverUserName(uDao.getUserNameById("username", "manager", id));
 				System.out.println(reI.toString());
 			}
 			

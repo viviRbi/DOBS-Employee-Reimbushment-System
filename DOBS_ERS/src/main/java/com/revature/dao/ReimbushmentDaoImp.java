@@ -16,6 +16,8 @@ public class ReimbushmentDaoImp implements ReimbushmentDao{
 	public List<Reimbushment> viewReimbushmentRequestById(int eid) {
 		List<Reimbushment> reList = new ArrayList<>();
 		Connection conn = null;
+		UserDao uDao = new UserDaoImp();
+		
 		try {
 			conn = ConnectionUtil.getConnection();
 			String sql = "SELECT * FROM reimbushment WHERE author = ?";
@@ -34,7 +36,10 @@ public class ReimbushmentDaoImp implements ReimbushmentDao{
 				reI.setStatusid(rs.getInt("status_id"));
 				reI.setTypeid(rs.getInt("type_id"));
 				reI.setReceipt(rs.getBytes("receipt"));
+				reI.setAuthorUserName(uDao.getUserNameById("username", "employee", eid));
+				reI.setResolverUserName(uDao.getUserNameById("username", "manager", eid));
 				reList.add(reI);
+				System.out.println(reI.toString());
 			}
 			
 		}catch(SQLException e){

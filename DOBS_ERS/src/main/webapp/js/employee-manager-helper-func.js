@@ -26,9 +26,9 @@ function displayReimbushment(data, queryValue){
                     <td>${data[i].id}</td>
                     <td>${data[i].amount}</td>
                     <td>${convertTimeStampToDate(data[i].submited)}</td>
-                    <td>${data[i].author +' - '+ data[i].authorName}</td>
+                    <td data-id="employee-${data[i].author}">${data[i].authorUserName}</td>
                     ${data[i].resolver >0?'<td>'+convertTimeStampToDate(data[i].resolved)+'</td>' : '<td>Not yet</td>'}
-                    ${data[i].resolver >0?'<td>'+data[i].resolver+'</td>' : '<td>Not yet</td>'}
+                    ${data[i].resolver >0?'<td data-id="manager-'+data[i].author+'">'+data[i].resolverUserName+'</td>' : '<td>Not yet</td>'}
                     <td >${typeName(data[i].typeid)}</td>
                    <td class="status${statusName[data[i].statusid-1]}">${statusName[data[i].statusid-1]}</td>
                     ${user.role =="manager" && data[i].statusid == 1 ?'<td><input name="selected" type="checkbox" value='+data[i].id+'></td>' : '<td></td>'}
@@ -42,7 +42,7 @@ function displayReimbushment(data, queryValue){
 
 function convertTimeStampToDate(timeStamp){
     var date = new Date(timeStamp);
-    return date
+    return date.toDateString()
 }
 
 function typeName(typeID){

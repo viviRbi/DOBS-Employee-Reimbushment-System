@@ -18,16 +18,18 @@ public class Reimbushment {
 	private String authorUserName = null;
 	private String resolverUserName = null;
 	
+	
+
 	@Override
 	public String toString() {
 		return "Reimbushment [id=" + id + ", amount=" + amount + ", submited=" + submited + ", resolved=" + resolved
-				+ ", statusid=" + statusid + ", typeid=" + typeid + ", author=" + author + "] = receipt = "+ receipt;
+				+ ", statusid=" + statusid + ", typeid=" + typeid + ", author=" + author + ", resolver=" + resolver
+				+ ", receipt=" + Arrays.toString(receipt) + ", authorUserName=" + authorUserName + ", resolverUserName="
+				+ resolverUserName + "]";
 	}
-	
 	public String getAuthorUserName() {
 		return authorUserName;
 	}
-
 	public void setAuthorUserName(String authorUserName) {
 		this.authorUserName = authorUserName;
 	}

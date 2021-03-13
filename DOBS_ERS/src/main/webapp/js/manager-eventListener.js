@@ -50,9 +50,11 @@ $(document).ready(function (){
         $("#displayReimbushment tbody").empty()
         $("#displayResolvedReimbushment tbody").empty()
         $("#displayAllEmployees tbody").empty()
+        
 
         // remove display-block for all <main> that is not main menu
         $("main").not("#managerMenu").removeClass("d-block")
+        $("main").not("#managerMenu").addClass("d-none")
         // remove display-none for main menu
         $("#managerMenu").removeClass("d-none")
     }

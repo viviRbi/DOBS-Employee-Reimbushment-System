@@ -98,6 +98,7 @@ public class ReimbushmentDaoUsedByMaImp extends ReimbushmentDaoImp implements Re
 	@Override
 	public List<Reimbushment> viewAllPendingReimbushment() {
 		List<Reimbushment> reList = new ArrayList<>();
+		UserDao uDao= new UserDaoImp();
 		try {
 			Connection conn = ConnectionUtil.getConnection();
 			String sql = "SELECT * FROM reimbushment WHERE status_id=?";
@@ -118,11 +119,10 @@ public class ReimbushmentDaoUsedByMaImp extends ReimbushmentDaoImp implements Re
 				reI.setStatusid(rs.getInt("status_id"));
 				reI.setTypeid(rs.getInt("type_id"));
 				reI.setReceipt(rs.getBytes("receipt"));
+				reI.setAuthorUserName(uDao.getUserNameById("username", "employee", rs.getInt("author")));
+				reI.setResolverUserName(uDao.getUserNameById("username", "manager", rs.getInt("resolver")));
 				reList.add(reI);
 				
-				//UserDao uDao = new UserDaoImp();
-				//String employeeName = uDao.getUserNameById("username", "employee", rs.getInt("author"));
-				//reI.setAuthorUserName(employeeName);
 				System.out.println(reI.toString());
 			}
 			
@@ -135,6 +135,7 @@ public class ReimbushmentDaoUsedByMaImp extends ReimbushmentDaoImp implements Re
 	@Override
 	public List<Reimbushment> viewAllResolvedReimbushment() {
 		List<Reimbushment> reList = new ArrayList<>();
+		UserDao uDao= new UserDaoImp();
 		try {
 			Connection conn = ConnectionUtil.getConnection();
 			String sql = "SELECT * FROM reimbushment WHERE status_id=?";
@@ -155,12 +156,10 @@ public class ReimbushmentDaoUsedByMaImp extends ReimbushmentDaoImp implements Re
 				reI.setStatusid(rs.getInt("status_id"));
 				reI.setTypeid(rs.getInt("type_id"));
 				reI.setReceipt(rs.getBytes("receipt"));
+				reI.setAuthorUserName(uDao.getUserNameById("username", "employee", rs.getInt("author")));
+				reI.setResolverUserName(uDao.getUserNameById("username", "manager", rs.getInt("resolver")));
 				reList.add(reI);
 				
-				//UserDao uDao = new UserDaoImp();
-				//String employeeName = uDao.getUserNameById("username", "employee", rs.getInt("author"));
-				//String managerName = uDao.getUserNameById("usermane", "manager", rs.getInt("resolver"));
-				//reI.setAuthorUserName(employeeName);
 				
 				System.out.println(reI.toString());
 			}
