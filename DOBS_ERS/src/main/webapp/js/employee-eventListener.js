@@ -12,7 +12,7 @@
 
         // Get pending request 
         $("#reimbushmentPendingReq").click(() => {
-            console.log('click', eid)
+    
             fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=pending&eid="+eid)
             .then(res => res.json())
             .then(data=> {
@@ -56,7 +56,10 @@ function sendSubmitReimbushmentRequest(reimbushmentReq){
         body: JSON.stringify(reimbushmentReq),
     }).then (res => res.json())
     .then (data => {
-        if (data.statusCode == 200) alertPopUp("#employeeSubmitReimbushmentSuccess", data.message)
+        if (data.statusCode == 200) {
+            alertPopUp("#employeeSubmitReimbushmentSuccess", data.message)
+            window.location.replace(globalVariable.backendRoot+"/employee-home.html")
+        }
         else alertPopUp("#employeeSubmitReimbushmentError", data.message)
     })
 }
@@ -65,11 +68,11 @@ function getSubmitReimbushmentInfo(){
     const reimbushmentReq = {
         amount: $("#submitReimbushmentForm input[name=amount]").val(),
         typeid: $("#submitReimbushmentForm select[name=type]").val(),
-        employeeid: JSON.parse(sessionStorage.getItem("user")).id,
+        author: JSON.parse(sessionStorage.getItem("user")).id,
         //receipt: $("#submitReimbushmentForm input[name=receipt]")[0].files[0]
     }
-
-   return reimbushmentReq
+    if(reimbushmentReq.amount > 0) return reimbushmentReq
+    else  alertPopUp("#employeeSubmitReimbushmentError", "<p class='text-warning'>Please request a positive amount</p>")
 }
 
 // Thumnail for file

@@ -32,6 +32,8 @@ public class SubmitReimbushment extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
+		System.out.println("sdsd");
+		
 		ObjectMapper om = new ObjectMapper();
 		PrintWriter pw = resp.getWriter();
 		Reimbushment reI = new Reimbushment();
@@ -46,6 +48,7 @@ public class SubmitReimbushment extends HttpServlet{
 		}
 		
 		String data = s.toString();
+		System.out.println(data);
 		reI = om.readValue(data, Reimbushment.class);
 		
 		EmployeeService es = new EmployeeServiceImp();
