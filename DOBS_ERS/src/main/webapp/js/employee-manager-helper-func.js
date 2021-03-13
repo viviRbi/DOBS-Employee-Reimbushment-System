@@ -25,9 +25,9 @@ function displayReimbushment(data, queryValue){
                 <tr class="pointable" id=${data[i].id}>
                     <td>${data[i].id}</td>
                     <td>${data[i].amount}</td>
-                    <td>${data[i].submited}</td>
+                    <td>${convertTimeStampToDate(data[i].submited)}</td>
                     <td>${data[i].author +' - '+ data[i].authorName}</td>
-                    ${data[i].resolver >0?'<td>'+data[i].resolved+'</td>' : '<td>Not yet</td>'}
+                    ${data[i].resolver >0?'<td>'+convertTimeStampToDate(data[i].resolved)+'</td>' : '<td>Not yet</td>'}
                     ${data[i].resolver >0?'<td>'+data[i].resolver+'</td>' : '<td>Not yet</td>'}
                     <td >${typeName(data[i].typeid)}</td>
                    <td class="status${statusName[data[i].statusid-1]}">${statusName[data[i].statusid-1]}</td>
@@ -38,6 +38,11 @@ function displayReimbushment(data, queryValue){
     } else {
         alertPopUp("#managerMenu .alert", data.message)
     }
+}
+
+function convertTimeStampToDate(timeStamp){
+    var date = new Date(timeStamp);
+    return date
 }
 
 function typeName(typeID){

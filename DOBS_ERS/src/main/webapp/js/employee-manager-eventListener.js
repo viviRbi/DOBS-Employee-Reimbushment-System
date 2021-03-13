@@ -16,7 +16,7 @@
     (function (){
         let user = JSON.parse(sessionStorage.getItem('user'))
         if (Boolean(user)){
-            //console.log(user)
+            $("#sayHi").text(`Hi ${user.username}`)
             const role = user.role
             let currentUrl = window.location.href
             switch (role){
@@ -43,7 +43,6 @@ $(document).ready(
             // get the form name of this button
             const formName = $(e.currentTarget).closest("form").attr("name")
             const loginCredential = getLoginCredential(formName)
-            console.log(loginCredential)
             // get login username, role(hidden input) and password
             sendLoginRequest(loginCredential)
         })
@@ -59,7 +58,6 @@ $(document).ready(
                 password : password,
                 role : role
             }
-            console.log(loginCredential)
             return loginCredential
         }
         
@@ -80,9 +78,8 @@ $(document).ready(
         
         // Check info inside obj to see we got error or a valid user
         function loginResponse(res, loginCredential){
-            var responseType = res.role? 'user' : 'error' 
-            if (responseType === 'user'){
-                $("#sayHi").text(`Hi ${res.firstname}`)
+            const responseType = (res.role == "user" || res.role == "employee" || res.role == "manager")? "user" : "error"
+            if (responseType == "user"){
                 sessionStorage.setItem(responseType,JSON.stringify(res))
                 console.log(res)
                 window.location.replace(`${globalVariable.backendRoot}/${(res.role)}-home.html`)
