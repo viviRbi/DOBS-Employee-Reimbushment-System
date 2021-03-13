@@ -18,6 +18,7 @@ public class Employee extends User {
 	public void setNewpassword(String newpassword) {
 		this.newpassword = newpassword;
 	}
+	
 	public String getFirstname() {
 		return firstname;
 	}

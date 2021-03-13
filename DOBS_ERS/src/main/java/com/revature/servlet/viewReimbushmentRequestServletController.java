@@ -10,12 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
+import com.revature.servlet.logInOut.LoginServlet;
+
 
 // Contain logic to forward serlet
 @WebServlet("/viewReimbushment")
 public class viewReimbushmentRequestServletController extends HttpServlet{
 	public static final long serialVersionUID = 1L;
-	
+	private static Logger log = Logger.getLogger(LoginServlet.class);
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
 		
@@ -26,6 +30,8 @@ public class viewReimbushmentRequestServletController extends HttpServlet{
 		String status = req.getParameter("status");
 		int eid = Integer.parseInt(req.getParameter("eid"));
 		String haveId = (eid >0) ? "haveId" : "noId";
+		
+		log.info("User enter view reimbushment controller to be forward. User looking for "+ status + " reimbushment and employee id status is: " + haveId);
 		
 		RequestDispatcher rd;
 		// Switch to servlets in viewReimbushment folder

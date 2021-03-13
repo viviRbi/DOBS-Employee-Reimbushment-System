@@ -30,6 +30,8 @@ public class LoginServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
+		log.info("A user is signing in");
+		
 		UserService uService = new UserServiceImp();
 		
 		BufferedReader reader = req.getReader();
@@ -61,6 +63,7 @@ public class LoginServlet extends HttpServlet{
 		
 		// If user exist in Database
 		if (user != null) {
+			log.debug("User info: "+ user.toString());
 			// get the current session OR create one if it doesn't exist
 			HttpSession session = req.getSession();
 			session.setAttribute("username", username);
@@ -68,6 +71,7 @@ public class LoginServlet extends HttpServlet{
 			session.setAttribute("id", user.getId());
 			resp.setContentType("application/json");
 			pw.println(om.writeValueAsString(user));
+			log.info("Successfully log in. Save id("+user.getId()+"), role("+role+"), username("+username+") in session" );
 		} else {
 			SendingAlert err = new SendingAlert();
 			err.setStatusCode(204);
@@ -75,6 +79,7 @@ public class LoginServlet extends HttpServlet{
 			err.setMessage("Username or password is incorrect");
 			resp.setContentType("application/json");
 			pw.println(om.writeValueAsString(err));
+			log.info("Fail to log in");
 		}
 		pw.close();
 	}

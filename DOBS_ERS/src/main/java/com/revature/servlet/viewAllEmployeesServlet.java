@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.revature.services.ManagerService;
 import com.revature.services.ManagerServiceImp;
 import com.revature.services.UserServiceImp;
+import com.revature.servlet.viewReimbushment.ViewAllPendingRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.Employee;
 import com.revature.model.SendingAlert;
@@ -22,12 +25,13 @@ public class viewAllEmployeesServlet extends HttpServlet{
 	public static final long serialVersionUID = 1L;
 	// Convert obj to json and vice versa
 	ObjectMapper om = new ObjectMapper();
-	
+	private static Logger log = Logger.getLogger(viewAllEmployeesServlet.class);
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
+		log.info("Viewing all emp profiles");
 		ManagerService m = new ManagerServiceImp();	
 		List<Employee> allEmployees = m.viewAllEmployees();
-		
+		log.debug("All emp profiles "+ allEmployees);
 		// Prepare to write response
 		PrintWriter pw = resp.getWriter();
 		

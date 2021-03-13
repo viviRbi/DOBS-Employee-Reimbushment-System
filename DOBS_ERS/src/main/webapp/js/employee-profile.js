@@ -15,7 +15,7 @@ function changeSubmitBtnState(submitBtn){
 
 function editModeInput(){
     const allInputs = $("#employeeProfileForm input")
-    $("#employeeProfileForm input[name=oldpassword]").closest(".form-group").removeClass("d-none")
+    $("#employeeProfileForm input[name=password]").closest(".form-group").removeClass("d-none")
     $("#employeeProfileForm input[name=newpassword]").closest(".form-group").removeClass("d-none")
     for (let i= 0; i < allInputs.length; i++){
         $(allInputs[i]).removeAttr("readonly")
@@ -44,4 +44,62 @@ function seedProfile(data){
     $("#employeeProfileForm input[name=firstname]").val(data.firstname)
     $("#employeeProfileForm input[name=lastname]").val(data.lastname)
     $("#employeeProfileForm input[name=email]").val(data.email)
+}
+
+
+//--------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------- Update Profile info --------------------------------------------------------
+$("#submitProfile").click((e) => {
+    e.preventDefault()
+    const data = getUpdatedInfo()
+    if (data!=null){
+        updateProfile(data, data.username)
+    }else alertPopUp("#employeeProfileError", `<p class="text-danger">Please fill the form carefully</p>`)
+})
+
+function updateProfile(data, username){
+    fetch(globalVariable.backendRoot + "/updateProfile",{
+        method:"POST",
+        headers: {
+            'Content-Type': 'application/json',
+          },
+        body: JSON.stringify(data)
+    }) .then(res => res.json()).then((data) => {
+        if(data.statusCode == 200){
+            // Change value of User in session storage
+            let changeData= JSON.parse(sessionStorage.getItem("user"))
+            changeData.username = username
+            sessionStorage.setItem("user", JSON.stringify(changeData))
+            // Change Hi text for edited username
+            $("#sayHi").text("Hi "+ username)
+            // alert success
+            alertPopUp("#employeeProfileError", `<p class="text-success">${data.message}</p>`)
+            setTimeout(() => window.location.reload(), 1000)
+        }else{
+            alertPopUp("#employeeProfileError", `<p class="text-danger">${data.message}</p>`)
+        }
+    })
+}
+
+function getUpdatedInfo(){
+    const updateData={
+        username : $("#employeeProfileForm input[name=username]").val(),
+        firstname : $("#employeeProfileForm input[name=firstname]").val(),
+        lastname : $("#employeeProfileForm input[name=lastname]").val(),
+        email : $("#employeeProfileForm input[name=email]").val(),
+        password : $("#employeeProfileForm input[name=password]").val(),
+        newpassword : $("#employeeProfileForm input[name=newpassword]").val()
+    }
+    if (validateInfo(updateData) == true) return updateData
+    else return null
+}
+
+function validateInfo(data){
+    const {username, firstname, lastname, email, password, newpassword} = data
+    const emailRegex = /\S+@\S+\.\S+/
+    if (username.trim().length <1 || firstname.trim().length <1 || lastname.trim().length <1 || email.trim().length <1 || password.trim().length <1 || newpassword.trim().length <1)
+        alertPopUp("#employeeProfileError", `<p class="text-danger">Please don't leave a blank</p>`)
+    if (!email.match(emailRegex))
+        alertPopUp("#employeeProfileError", `<p class="text-danger">Please fill a valid email</p>`)
+    else return true
 }

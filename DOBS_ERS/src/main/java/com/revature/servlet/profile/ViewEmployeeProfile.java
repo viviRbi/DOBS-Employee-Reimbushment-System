@@ -9,26 +9,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.Employee;
 import com.revature.model.SendingAlert;
 import com.revature.services.EmployeeService;
 import com.revature.services.EmployeeServiceImp;
+import com.revature.servlet.logInOut.LoginServlet;
 
 @WebServlet("/viewProfile")
 public class ViewEmployeeProfile extends HttpServlet{
 	public static final long serialVersionUID = 1L;
 	// Convert obj to json and vice versa
 	ObjectMapper om = new ObjectMapper();
+	private static Logger log = Logger.getLogger(ViewEmployeeProfile.class);
 	
 	// Change to do post later
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
+		log.info("An emp is viewing profile");
 		
 		int eid = Integer.parseInt(req.getParameter("eid"));
 		
 		EmployeeService e = new EmployeeServiceImp();
 		Employee info = e.viewProfile(eid);
+		log.debug("Employee profile detail: " + info.toString());
 		
 		PrintWriter pw = resp.getWriter();
 		

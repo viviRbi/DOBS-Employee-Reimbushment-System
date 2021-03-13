@@ -15,12 +15,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.Reimbushment;
 import com.revature.model.SendingAlert;
 import com.revature.model.User;
 import com.revature.services.EmployeeService;
 import com.revature.services.EmployeeServiceImp;
+import com.revature.servlet.viewReimbushment.ViewAllPendingRequest;
 
 @WebServlet("/submitReimbushment")
 //@MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
@@ -29,10 +32,10 @@ import com.revature.services.EmployeeServiceImp;
 
 public class SubmitReimbushment extends HttpServlet{
 	 private static final long serialVersionUID = 1L;
-
+	 private static Logger log = Logger.getLogger(SubmitReimbushment.class);
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
-		System.out.println("sdsd");
+		log.info("Employee submiting reimbushment");
 		
 		ObjectMapper om = new ObjectMapper();
 		PrintWriter pw = resp.getWriter();
@@ -48,7 +51,7 @@ public class SubmitReimbushment extends HttpServlet{
 		}
 		
 		String data = s.toString();
-		System.out.println(data);
+		log.debug("Info submited: "+data);
 		reI = om.readValue(data, Reimbushment.class);
 		
 		EmployeeService es = new EmployeeServiceImp();
@@ -75,6 +78,7 @@ public class SubmitReimbushment extends HttpServlet{
 		if(outputStream != null) outputStream.close();*/
 		
 		if (submited == true) {
+			log.debug("Successfilly submit");
 			SendingAlert info = new SendingAlert();
 			info.setStatusCode(200);
 			info.setDescription("Submited");
@@ -82,6 +86,7 @@ public class SubmitReimbushment extends HttpServlet{
 			resp.setContentType("application/json");
 			pw.println(om.writeValueAsString(info));
 		} else {
+			log.debug("Fail to submit request");
 			SendingAlert info = new SendingAlert();
 			info.setStatusCode(500);
 			info.setDescription("Fail to save data to database");

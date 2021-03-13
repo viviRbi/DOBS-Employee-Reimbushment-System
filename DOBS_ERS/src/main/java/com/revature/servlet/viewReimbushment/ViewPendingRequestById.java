@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.Reimbushment;
 import com.revature.model.SendingAlert;
@@ -21,17 +23,17 @@ public class ViewPendingRequestById extends HttpServlet{
 	public static final long serialVersionUID = 1L;
 	// Convert obj to json and vice versa
 	ObjectMapper om = new ObjectMapper();
+	private static Logger log = Logger.getLogger(ViewPendingRequestById.class);
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
 		int eid = Integer.parseInt(req.getParameter("eid"));
-		System.out.println(eid);
+		log.info("View all pending request of employee number "+ eid);
 		EmployeeService e = new EmployeeServiceImp();	
 		
 		List<Reimbushment> allPending = e.viewPendingReimbushmentRequestById(eid);
 		
-		System.out.println("view all pending request by id");
-		System.out.println(allPending);
+		log.debug(allPending);
 		// Prepare to write response
 		PrintWriter pw = resp.getWriter();
 		

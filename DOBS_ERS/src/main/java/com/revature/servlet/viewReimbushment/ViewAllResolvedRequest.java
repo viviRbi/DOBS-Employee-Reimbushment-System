@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.Reimbushment;
 import com.revature.model.SendingAlert;
@@ -21,15 +23,16 @@ public class ViewAllResolvedRequest extends HttpServlet{
 	public static final long serialVersionUID = 1L;
 	// Convert obj to json and vice versa
 		ObjectMapper om = new ObjectMapper();
+		private static Logger log = Logger.getLogger(ViewAllResolvedRequest.class);
 		
 		@Override
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
-			System.out.println("manager is viewing all resolved requests");
+			log.info("manager is viewing all resolved requests");
 			
 			ManagerService m = new ManagerServiceImp();	
 			List<Reimbushment> allPending = m.viewAllResolvedReimbushment();
 			
-			System.out.println(allPending);
+			log.debug(allPending);
 			// Prepare to write response
 			PrintWriter pw = resp.getWriter();
 			
