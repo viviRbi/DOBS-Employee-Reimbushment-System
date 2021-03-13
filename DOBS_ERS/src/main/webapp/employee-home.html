@@ -33,9 +33,8 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right avatar-wrapper-width text-center">
                         <!-- Need onclick event, no need for href -->
-                      <button class="dropdown-item" type="button" id="employeeProfileBtn">Profile</button>
-                      <button class="dropdown-item" type="button" id="employeeEditProfileBtn">Edit</button>
-                      <a class="logout"><button class="dropdown-item" type="button" id="logOutBtn">Logout</button></a>
+                      <a href="employee-profile.html"><button class="dropdown-item" type="button" id="employeeProfileBtn">Profile</button></a>
+                      <button class="dropdown-item" type="button" id="logOutBtn">Logout</button>
                     </div>
                   </div>     
             </aside>
@@ -65,7 +64,7 @@
                           <div class="form-group row text-left">
                               <label class="col-3 col-form-label text-left">Amount</label>
                               <div class="col-9">
-                                <input type="number" class="form-control" name="amount" required>
+                                <input type="number" class="form-control" name="amount" required min = 1>
                               </div>
                             </div>
                             <div class="form-group row">

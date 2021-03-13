@@ -41,15 +41,16 @@ public class EmployeeDaoImp extends UserDaoImp implements EmployeeDao{
 		boolean updated = false;
 		try {
 			Connection conn = ConnectionUtil.getConnection();
-			String sql = "UPDATE employee SET username= ?, password =?, firstname=?, lastname=?, email=?, avatar=? WHERE user_id=?";
+			String sql = "UPDATE employee SET username= ?, password =?, firstname=?, lastname=?, email=?, avatar=? WHERE user_id=? AND password=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,e.getUsername());
-			pstmt.setString(2,e.getPassword());
+			pstmt.setString(2,e.getNewpassword());
 			pstmt.setString(3,e.getFirstname());
 			pstmt.setString(4,e.getLastname());
 			pstmt.setString(5,e.getEmail());
 			pstmt.setString(6,e.getAvatar());
 			pstmt.setInt(7, e.getId());
+			pstmt.setString(8, e.getPassword());
 
 			if(pstmt.executeUpdate() > 0) 
 				updated = true;

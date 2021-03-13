@@ -28,13 +28,13 @@ public class ViewEmployeeProfile extends HttpServlet{
 		int eid = Integer.parseInt(req.getParameter("eid"));
 		
 		EmployeeService e = new EmployeeServiceImp();
-		Employee updatedInfo = e.viewProfile(eid);
+		Employee info = e.viewProfile(eid);
 		
 		PrintWriter pw = resp.getWriter();
 		
-		if (updatedInfo != null) {
+		if (info != null) {
 			resp.setContentType("application/json");
-			String jsonReIs = om.writeValueAsString(updatedInfo);
+			String jsonReIs = om.writeValueAsString(info);
 			pw.println(jsonReIs);
 		} else {
 			SendingAlert err = new SendingAlert();

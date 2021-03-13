@@ -6,18 +6,11 @@
     let user = JSON.parse(sessionStorage.getItem("user"))
     const eid = user.id
     if (user.role == "employee"){
-        $("#reimbushmentPendingReq").click(()=>{
-            fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=pending&eid="+ eid)
-            .then(res => res.json())
-            .then(data=> console.log(data))
-        })
-        $("#reimbushmentResolvedReq").click(()=>{
-            fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=resolved&eid="+ eid)
-            .then(res => res.json())
-            .then(data=> console.log(data))
-        })
-         // get employee id from Json data in session(in employee-manager-eventListener.js), call another callback func in employee-manager-helper-func.js
+
+         // Get all request. (employee id from Json data in session(in employee-manager-eventListener.js), call another callback func in employee-manager-helper-func.js)
         $("#reimbushmentAllReq").click(()=> getReimbushmentRequestOfOneEmp(eid))
+
+        // Get pending request 
         $("#reimbushmentPendingReq").click(() => {
             console.log('click', eid)
             fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=pending&eid="+eid)
@@ -29,6 +22,7 @@
                     alertPopUp("#managerMenu .alert", "No data found")
             })
         })
+        // Get resolvedrequest 
         $("#reimbushmentResolvedReq").click(()=>{
             fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=resolved&eid="+eid)
             .then(res => res.json())
@@ -40,7 +34,7 @@
                     alertPopUp("#managerMenu .alert", "No data found")
             })
         })
-    }
+    } else window.location.replace(globalVariable.backendRoot)
 })()
 
 //---------------------------------------------------------------------------------------------------------------------------------------------
@@ -74,7 +68,7 @@ function getSubmitReimbushmentInfo(){
         employeeid: JSON.parse(sessionStorage.getItem("user")).id,
         //receipt: $("#submitReimbushmentForm input[name=receipt]")[0].files[0]
     }
-    //return formData
+
    return reimbushmentReq
 }
 

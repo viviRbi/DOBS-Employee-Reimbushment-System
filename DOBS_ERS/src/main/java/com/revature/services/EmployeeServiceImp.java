@@ -9,7 +9,7 @@ import com.revature.dao.ReimbushmentDaoUsedByEmpImp;
 import com.revature.model.Employee;
 import com.revature.model.Reimbushment;
 
-public class EmployeeServiceImp implements EmployeeService{
+public class EmployeeServiceImp  extends UserServiceImp implements EmployeeService{
 	
 	@Override
 	public boolean submitReimbushmentRequest(int eid, double amount, int type_id) {

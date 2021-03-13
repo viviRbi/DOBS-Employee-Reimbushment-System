@@ -6,10 +6,17 @@ public class Employee extends User {
 	private String lastname;
 	private String email;
 	private String avatar = null;
+	private String newpassword = null;
 	
 	public Employee() {
 		super();
 		this.setRole("employee");
+	}
+	public String getNewpassword() {
+		return newpassword;
+	}
+	public void setNewpassword(String newpassword) {
+		this.newpassword = newpassword;
 	}
 	public String getFirstname() {
 		return firstname;

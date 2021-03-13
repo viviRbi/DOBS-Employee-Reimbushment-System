@@ -31,10 +31,10 @@ public class UpdateEmployeeProfile extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
 		
 		//Get session and check user role
-		HttpSession session = req.getSession();
-		String role = (String) session.getAttribute("role");
+		//HttpSession session = req.getSession();
+		//String role = (String) session.getAttribute("role");
 		
-		if (role == "employee") {
+		//if (role == "employee") {
 			BufferedReader reader = req.getReader();
 			StringBuilder s = new StringBuilder();
 			
@@ -54,7 +54,8 @@ public class UpdateEmployeeProfile extends HttpServlet{
 			UserService u = new UserServiceImp();
 			String hashedPassword = u.hashPassword(emp.getPassword());
 			emp.setPassword(hashedPassword);
-	
+			emp.setId(1);
+	System.out.println("Update" + emp.toString());
 			// Update to database
 			EmployeeService e = new EmployeeServiceImp();
 			boolean updated = e.updateProfile(emp);
@@ -77,7 +78,7 @@ public class UpdateEmployeeProfile extends HttpServlet{
 				resp.setContentType("application/json");
 				pw.println(om.writeValueAsString(err));
 			}
-		} else resp.sendRedirect("index.html");
+		//} else resp.sendRedirect("index.html");
 	}
 	
 	@Override
