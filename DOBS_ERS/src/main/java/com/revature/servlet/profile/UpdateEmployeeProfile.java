@@ -54,8 +54,13 @@ public class UpdateEmployeeProfile extends HttpServlet{
 			UserService u = new UserServiceImp();
 			String hashedPassword = u.hashPassword(emp.getPassword());
 			emp.setPassword(hashedPassword);
+			
+			String newHashedPassword = u.hashPassword(emp.getNewpassword());
+			emp.setNewpassword(newHashedPassword);
+			
 			emp.setId(1);
-	System.out.println("Update" + emp.toString());
+			
+	//System.out.println("Update" + emp.toString());
 			// Update to database
 			EmployeeService e = new EmployeeServiceImp();
 			boolean updated = e.updateProfile(emp);
