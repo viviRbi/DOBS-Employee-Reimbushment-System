@@ -29,7 +29,6 @@ function editModeInput(){
     let user = JSON.parse(sessionStorage.getItem("user"))
     const eid = user.id
     if (user.role == "employee"){
-        console.log(eid)
         fetchEmpInfo(eid)
     } else window.location.replace(globalVariable.backendRoot)
 })()
@@ -37,5 +36,12 @@ function editModeInput(){
 function fetchEmpInfo(eid){
     fetch(`${globalVariable.backendRoot}/viewProfile?eid=${eid}`)
     .then(res=> res.json())
-    .then(data=>console.log(data))
+    .then(data=>seedProfile(data))
+}
+
+function seedProfile(data){
+    $("#employeeProfileForm input[name=username]").val(data.username)
+    $("#employeeProfileForm input[name=firstname]").val(data.firstname)
+    $("#employeeProfileForm input[name=lastname]").val(data.lastname)
+    $("#employeeProfileForm input[name=email]").val(data.email)
 }
