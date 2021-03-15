@@ -49,11 +49,11 @@ function seedProfile(data){
 
 //--------------------------------------------------------------------------------------------------------------------------
 //-------------------------------------------------- Update Profile info --------------------------------------------------------
-$("#submitProfile").click((e) => {
-    e.preventDefault()
+$("#submitProfile").click(function() {
+   // e.preventDefault()
+   console.log("click")
     const data = getUpdatedInfo()
-    let error
-    if (data != null){
+    if (data.username != null){
         updateProfile(data, data.username)
     }else alertPopUp("#employeeProfileError", `<p class="text-danger">Please fill the form carefully</p>`)
 })

@@ -120,5 +120,5 @@ function getReimbushmentRequestOfOneEmp(eid){
 // alert popUp then fadeout after some times by append an alert message then remove it
 function alertPopUp(selector, message, timeOut=3000){
     $(selector).append(`<p>${message}</p>`)
-        setTimeout(()=> $(selector).remove(),timeOut)
+        setTimeout(()=> $(selector).empty(),timeOut)
 }
