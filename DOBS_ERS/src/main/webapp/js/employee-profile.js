@@ -52,7 +52,8 @@ function seedProfile(data){
 $("#submitProfile").click((e) => {
     e.preventDefault()
     const data = getUpdatedInfo()
-    if (data!=null){
+    let error
+    if (data != null){
         updateProfile(data, data.username)
     }else alertPopUp("#employeeProfileError", `<p class="text-danger">Please fill the form carefully</p>`)
 })
@@ -74,7 +75,7 @@ function updateProfile(data, username){
             $("#sayHi").text("Hi "+ username)
             // alert success
             alertPopUp("#employeeProfileError", `<p class="text-success">${data.message}</p>`)
-            setTimeout(() => window.location.reload(), 1000)
+            setTimeout(() => window.location.reload(), 4000)
         }else{
             alertPopUp("#employeeProfileError", `<p class="text-danger">${data.message}</p>`)
         }
@@ -91,15 +92,16 @@ function getUpdatedInfo(){
         newpassword : $("#employeeProfileForm input[name=newpassword]").val()
     }
     if (validateInfo(updateData) == true) return updateData
-    else return null
 }
 
 function validateInfo(data){
     const {username, firstname, lastname, email, password, newpassword} = data
     const emailRegex = /\S+@\S+\.\S+/
-    if (username.trim().length <1 || firstname.trim().length <1 || lastname.trim().length <1 || email.trim().length <1 || password.trim().length <1 || newpassword.trim().length <1)
+    if (username.trim().length <2 || firstname.trim().length <2 || lastname.trim().length <2 || email.trim().length <2 || password.trim().length <2 || newpassword.trim().length <2){
         alertPopUp("#employeeProfileError", `<p class="text-danger">Please don't leave a blank</p>`)
-    if (!email.match(emailRegex))
+        return false
+   } if (!email.match(emailRegex)){
         alertPopUp("#employeeProfileError", `<p class="text-danger">Please fill a valid email</p>`)
-    else return true
+        return false
+    }else return true
 }

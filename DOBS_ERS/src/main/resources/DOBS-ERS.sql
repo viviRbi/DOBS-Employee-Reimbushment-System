@@ -99,3 +99,5 @@ insert into reimbushment (amount, submited, resolved, author, resolver, status_i
 select * from reimbushment where author = 4;
 update reimbushment set resolved = '1900-01-01 00:00:00.000', resolver = null where status_id  = 1;
 update reimbushment set resolved = '2021-10-20 15:45:00.000', resolver = 2 where status_id  in (2,3);
+
+SELECT username FROM employee WHERE user_id = 1;

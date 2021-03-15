@@ -17,7 +17,7 @@ import com.revature.util.ConnectionUtil;
 public class ReimbushmentDaoUsedByEmpImp extends ReimbushmentDaoImp implements ReimbushmentDaoUsedByEmp{
 
 	@Override
-	public boolean submitReimbushmentRequest(int eid, double amount, int type_id) {
+	public boolean submitReimbushmentRequest(int type_id, double amount, int eid) {
 		boolean submited = false;
 		
 		// Get date

@@ -12,9 +12,9 @@ import com.revature.model.Reimbushment;
 public class EmployeeServiceImp  extends UserServiceImp implements EmployeeService{
 	
 	@Override
-	public boolean submitReimbushmentRequest(int eid, double amount, int type_id) {
+	public boolean submitReimbushmentRequest(int type_id, double amount, int eid) {
 		ReimbushmentDaoUsedByEmp reDao = new ReimbushmentDaoUsedByEmpImp();
-		boolean submited = reDao.submitReimbushmentRequest(eid, amount, type_id);
+		boolean submited = reDao.submitReimbushmentRequest(type_id, amount, eid);
 		return submited;
 	}
 
