@@ -37,7 +37,7 @@ public class ReimbushmentDaoImp implements ReimbushmentDao{
 				reI.setTypeid(rs.getInt("type_id"));
 				reI.setReceipt(rs.getBytes("receipt"));
 				reI.setAuthorUserName(uDao.getUserNameById("username", "employee", eid));
-				reI.setResolverUserName(uDao.getUserNameById("username", "manager", eid));
+				reI.setResolverUserName(uDao.getUserNameById("username", "manager", rs.getInt("resolver")));
 				reList.add(reI);
 				System.out.println(reI.toString());
 			}

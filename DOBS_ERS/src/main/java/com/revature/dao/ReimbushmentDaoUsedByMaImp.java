@@ -60,7 +60,7 @@ public class ReimbushmentDaoUsedByMaImp extends ReimbushmentDaoImp implements Re
 		boolean approved = false;
 		try {
 			Connection conn = ConnectionUtil.getConnection();
-			
+			System.out.println(managerId);
 			// Get date
 			Date d=new Date();
 			SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy   HH:mma z EEE");
