@@ -50,10 +50,8 @@ function seedProfile(data){
 //--------------------------------------------------------------------------------------------------------------------------
 //-------------------------------------------------- Update Profile info --------------------------------------------------------
 $("#submitProfile").click(function() {
-   // e.preventDefault()
-   console.log("click")
     const data = getUpdatedInfo()
-    if (data.username != null){
+    if (data != null){
         updateProfile(data, data.username)
     }else alertPopUp("#employeeProfileError", `<p class="text-danger">Please fill the form carefully</p>`)
 })

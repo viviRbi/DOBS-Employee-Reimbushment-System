@@ -121,4 +121,5 @@ function getReimbushmentRequestOfOneEmp(eid){
 function alertPopUp(selector, message, timeOut=3000){
     $(selector).append(`<p>${message}</p>`)
         setTimeout(()=> $(selector).empty(),timeOut)
+        if (selector.text()) selector.text('')
 }
