@@ -48,13 +48,24 @@ $("#submitReimbushmentBtn").click(function(e) {
 
     // send request
 function sendSubmitReimbushmentRequest(reimbushmentReq){
+	    /*const xhr = new XMLHttpRequest();
+	
+	    // Define what happens on successful data submission
+	    xhr.onreadystatechange = function () {
+	        if (this.readyState === 4 && this.status === 200) {
+	            window.location = globalVariable.backendRoot+"/employee-home.html"
+	        }
+	    }
+	    xhr.open("POST", globalVariable.backendRoot + "/submitReimbushment");
+	    xhr.send(reimbushmentReq);
+	}*/
     for (var pair of reimbushmentReq.entries()) {
         console.log(pair[0] + " - " + pair[1]);
       }
     fetch(globalVariable.backendRoot + "/submitReimbushment", {
         method: "POST",
-        // fetch needs new URLSearchParams to send form data
-        body: new URLSearchParams(reimbushmentReq),
+        // fetch needs new URLSearchParams to send form
+        body: reimbushmentReq,
     }).then (res => res.json())
     .then (data => {
         if (data.statusCode == 200) {
