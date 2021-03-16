@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -13,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.apache.log4j.Logger;
@@ -39,6 +41,7 @@ public class SubmitReimbushment extends HttpServlet{
 		
 		ObjectMapper om = new ObjectMapper();
 		PrintWriter pw = resp.getWriter();
+		/*
 		Reimbushment reI = new Reimbushment();
 		
 		BufferedReader reader = req.getReader();
@@ -48,15 +51,39 @@ public class SubmitReimbushment extends HttpServlet{
 		while (line != null) {
 			s.append(line);
 			line = reader.readLine();
-		}
+		}*/
+		HttpSession session = req.getSession();
+		int id = (int) session.getAttribute("id");
+		System.out.println("User id: "+ id);
 		
-		String data = s.toString();
-		log.debug("Info submited: "+data);
-		reI = om.readValue(data, Reimbushment.class);
+		Enumeration<String> requestParameters = req.getParameterNames();
+        while (requestParameters.hasMoreElements()) {
+            String paramName = (String) requestParameters.nextElement();
+            System.out.println("Request Paramter Name: " + paramName 
+                            + ", Value - " + req.getParameter(paramName));
+        }
+		
+		String type = req.getParameter("type");
+		System.out.println("User type--: "+ type);
+		/*double amount = Double.parseDouble(req.getParameter("amount"));
+		InputStream receiptStream = null;
+		try {
+			Part receiptPart = req.getPart("receipt");
+			receiptStream = receiptPart.getInputStream();
+		} catch(IOException | ServletException e) {
+			e.printStackTrace();
+		}
+		System.out.println(receiptStream);
+		
+		byte[] receiptBytes = receiptStream.readAllBytes();
+		System.out.println(receiptBytes);*/
+		
+		//log.debug("Info submited: "+data);
+		//reI = om.readValue(data, Reimbushment.class);
 		
 		EmployeeService es = new EmployeeServiceImp();
-		boolean submited = es.submitReimbushmentRequest( reI.getTypeid(), reI.getAmount(), reI.getAuthor());
-		
+		//boolean submited = es.submitReimbushmentRequest( type, amount, id);
+		boolean submited = true;
 		// Testing image file
 		/*Part receiptPath = req.getPart("receipt");
 		InputStream inputStream = null;

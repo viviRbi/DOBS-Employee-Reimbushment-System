@@ -22,7 +22,7 @@
                     alertPopUp("#managerMenu .alert", "No data found")
             })
         })
-        // Get resolvedrequest 
+        // Get resolved request 
         $("#reimbushmentResolvedReq").click(()=>{
             fetch(globalVariable.backendRoot + "/"+globalVariable.viewReimbushment+"?status=resolved&eid="+eid)
             .then(res => res.json())
@@ -48,12 +48,13 @@ $("#submitReimbushmentBtn").click(function(e) {
 
     // send request
 function sendSubmitReimbushmentRequest(reimbushmentReq){
+    for (var pair of reimbushmentReq.entries()) {
+        console.log(pair[0] + " - " + pair[1]);
+      }
     fetch(globalVariable.backendRoot + "/submitReimbushment", {
         method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-          },
-        body: JSON.stringify(reimbushmentReq),
+        // fetch needs new URLSearchParams to send form data
+        body: new URLSearchParams(reimbushmentReq),
     }).then (res => res.json())
     .then (data => {
         if (data.statusCode == 200) {
@@ -65,13 +66,19 @@ function sendSubmitReimbushmentRequest(reimbushmentReq){
 }
 // get request body parameter
 function getSubmitReimbushmentInfo(){
-    const reimbushmentReq = {
+    /*const reimbushmentReq = {
         amount: $("#submitReimbushmentForm input[name=amount]").val(),
         typeid: $("#submitReimbushmentForm select[name=type]").val(),
         author: JSON.parse(sessionStorage.getItem("user")).id,
         //receipt: $("#submitReimbushmentForm input[name=receipt]")[0].files[0]
-    }
-    if(reimbushmentReq.amount > 0) return reimbushmentReq
+    }*/
+    const amount = $("#submitReimbushmentForm input[name=amount]").val()
+    const reimbushmentReq = new FormData(document.getElementById("submitReimbushmentForm"))
+
+    // console.log form object will just get an empty form
+    // pair[0] is key, pair [1] is value
+    
+    if(amount > 0) return reimbushmentReq
     else  alertPopUp("#employeeSubmitReimbushmentError", "<p class='text-warning'>Please request a positive amount</p>")
 }
 
