@@ -10,13 +10,6 @@ import com.revature.model.Employee;
 import com.revature.model.Reimbushment;
 
 public class EmployeeServiceImp  extends UserServiceImp implements EmployeeService{
-	
-	@Override
-	public boolean submitReimbushmentRequest(int type_id, double amount, int eid) {
-		ReimbushmentDaoUsedByEmp reDao = new ReimbushmentDaoUsedByEmpImp();
-		boolean submited = reDao.submitReimbushmentRequest(type_id, amount, eid);
-		return submited;
-	}
 
 	@Override
 	public List<Reimbushment> viewPendingReimbushmentRequestById(int id) {
@@ -44,6 +37,13 @@ public class EmployeeServiceImp  extends UserServiceImp implements EmployeeServi
 		EmployeeDao eDao = new EmployeeDaoImp();
 		boolean updated= eDao.updateProfile(e);
 		return updated;
+	}
+
+	@Override
+	public boolean submitReimbushmentRequest(int type, double amount, int id, byte[] receiptBytes) {
+		ReimbushmentDaoUsedByEmp reDao = new ReimbushmentDaoUsedByEmpImp();
+		boolean submited = reDao.submitReimbushmentRequest(type, amount, id, receiptBytes);
+		return submited;
 	}
 
 }

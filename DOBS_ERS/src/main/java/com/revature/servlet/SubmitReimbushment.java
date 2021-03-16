@@ -61,7 +61,7 @@ public class SubmitReimbushment extends HttpServlet{
                             + ", Value - " + req.getParameter(paramName));
         }*/
 		
-		String type = req.getParameter("type");
+		int type = Integer.parseInt(req.getParameter("type"));
 		System.out.println("User type--: "+ type);
 		double amount = Double.parseDouble(req.getParameter("amount"));
 		
@@ -81,8 +81,8 @@ public class SubmitReimbushment extends HttpServlet{
 		//reI = om.readValue(data, Reimbushment.class);
 		
 		EmployeeService es = new EmployeeServiceImp();
-		//boolean submited = es.submitReimbushmentRequest( type, amount, id);
-		boolean submited = true;
+		boolean submited = es.submitReimbushmentRequest( type, amount, id, receiptBytes);
+		//boolean submited = true;
 		// Testing image file
 		/*Part receiptPath = req.getPart("receipt");
 		InputStream inputStream = null;
