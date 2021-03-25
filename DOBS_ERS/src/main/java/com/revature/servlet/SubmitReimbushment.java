@@ -23,11 +23,6 @@ import com.revature.services.EmployeeServiceImp;
 import com.revature.servlet.viewReimbushment.ViewAllPendingRequest;
 
 @WebServlet("/submitReimbushment")
-
-// add to allow multipart
-//@MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
-//maxFileSize=1024*1024*10,      // 10MB
-//maxRequestSize=1024*1024*50)
 @javax.servlet.annotation.MultipartConfig
 public class SubmitReimbushment extends HttpServlet{
 	 private static final long serialVersionUID = 1L;
@@ -38,6 +33,7 @@ public class SubmitReimbushment extends HttpServlet{
 		
 		ObjectMapper om = new ObjectMapper();
 		PrintWriter pw = resp.getWriter();
+		
 		/*
 		Reimbushment reI = new Reimbushment();
 		
